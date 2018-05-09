@@ -69,13 +69,14 @@ function tad_lunch3_list($period = "")
 
     $xoopsTpl->assign('lunch', $lunch);
 
-    // if (!file_exists(XOOPS_ROOT_PATH . "/modules/tadtools/colorbox.php")) {
-    //     redirect_header("index.php", 3, _MA_NEED_TADTOOLS);
-    // }
-    // include_once XOOPS_ROOT_PATH . "/modules/tadtools/colorbox.php";
-    // $colorbox = new colorbox('.lunch_pic');
-    // $colorbox->render();
-
+    if (!file_exists(XOOPS_ROOT_PATH . "/modules/tadtools/easy_responsive_tabs.php")) {
+        redirect_header("index.php", 3, _MA_NEED_TADTOOLS);
+    }
+    include_once XOOPS_ROOT_PATH . "/modules/tadtools/easy_responsive_tabs.php";
+    $responsive_tabs = new easy_responsive_tabs('#lunch3Tab');
+    $responsive_tabs->rander();
+    $kitchenTab = new easy_responsive_tabs('#kitchenTab');
+    $kitchenTab->rander();
 }
 
 /*-----------執行動作判斷區----------*/

@@ -62,12 +62,14 @@ function tad_lunch3_today($options)
         }
     }
 
-    if (!file_exists(XOOPS_ROOT_PATH . "/modules/tadtools/fancybox.php")) {
+    if (!file_exists(XOOPS_ROOT_PATH . "/modules/tadtools/easy_responsive_tabs.php")) {
         redirect_header("index.php", 3, _MA_NEED_TADTOOLS);
     }
-    include_once XOOPS_ROOT_PATH . "/modules/tadtools/fancybox.php";
-    $fancybox = new fancybox('.lunch3_pic');
-    $fancybox->render(false);
+    include_once XOOPS_ROOT_PATH . "/modules/tadtools/easy_responsive_tabs.php";
+    $responsive_tabs = new easy_responsive_tabs('#lunch3Tab');
+    $responsive_tabs->rander();
+    $kitchenTab = new easy_responsive_tabs('#kitchenTab');
+    $kitchenTab->rander();
     // $block['json'] = var_export($block, true);
     return $block;
 }
