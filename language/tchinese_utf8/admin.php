@@ -24,4 +24,4 @@ define('_MA_TAD_LUNCH3_STEP', '設定步驟說明');
 define('_MA_TAD_LUNCH3_STEP1', '請先連至<a href="https://fatraceschool.moe.gov.tw/" target="_blank">校園食材登錄平臺</a>');
 define('_MA_TAD_LUNCH3_STEP2', '在首頁輸入學校關鍵字，並按下「查詢」');
 define('_MA_TAD_LUNCH3_STEP3', '從網址上即可看到學校編號');
-define('_MA_TAD_LUNCH3_STEP4', '將數字複製起來，<a href="<{$xoops_url}>/modules/system/admin.php?fct=preferences&op=showmod&mod=<{$mod}>">到偏好設定輸入即可。</a>');
+define('_MA_TAD_LUNCH3_STEP4', '將數字複製起來，<a href="' . XOOPS_URL . '/modules/system/admin.php?fct=preferences&op=showmod&mod=<{$mod}>">到偏好設定輸入即可。</a>');

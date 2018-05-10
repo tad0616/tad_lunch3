@@ -261,3 +261,46 @@ function tad_lunch3_today_edit($options)
     ";
     return $form;
 }
+
+//取得所有類別標題
+if (!function_exists("block_schoolid")) {
+    function block_schoolid($selected = "")
+    {
+        global $xoopsDB, $xoopsModule;
+
+        $modhandler        = xoops_gethandler('module');
+        $xoopsModule       = $modhandler->getByDirname("tad_lunch3");
+        $config_handler    = xoops_gethandler('config');
+        $mid               = $xoopsModule->mid();
+        $xoopsModuleConfig = $config_handler->getConfigsByCat(0, $mid);
+
+        $SchoolIdArr = explode(';', $xoopsModuleConfig['SchoolId']);
+
+        if (!empty($selected)) {
+            $sc = explode(",", $selected);
+        }
+
+        $js = "<script>
+          function bbv(){
+            i=0;
+            var arr = new Array();";
+
+        foreach ($SchoolIdArr as $schoolid) {
+            $js .= "if(document.getElementById('c{$schoolid}').checked){
+          arr[i] = document.getElementById('c{$schoolid}').value;
+          i++;
+          }";
+            $ckecked = (in_array($schoolid, $sc)) ? "checked" : "";
+            $option .= "<span style='white-space:nowrap;'><input type='checkbox' id='c{$schoolid}' value='{$schoolid}' class='bbv' onChange=bbv() $ckecked><label for='c{$schoolid}'>$schoolid</label></span> ";
+        }
+
+        $js .= "document.getElementById('bb').value=arr.join(',');
+  }
+  </script>";
+
+        $main['js']   = $js;
+        $main['form'] = $option;
+        $main['mid']  = $mid;
+        return $main;
+    }
+}
