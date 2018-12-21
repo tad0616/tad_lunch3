@@ -35,7 +35,6 @@ switch ($op) {
 
     default:
         $now_op = "tad_lunch3_readme";
-        $xoopsTpl->assign("mod", $xoopsModule->mid());
         break;
 
         /*---判斷動作請貼在上方---*/

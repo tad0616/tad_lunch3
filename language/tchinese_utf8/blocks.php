@@ -33,3 +33,4 @@ define('_MB_TAD_LUNCH3_MAINDISH', '主食');
 define('_MB_TAD_LUNCH3_NO_LUNCH', '當天不供餐，或尚無該日資訊！');
 define('_MB_TAD_LUNCH3_TODAY_OPT7_TXT', '（可至偏好設定修改學校編號）');
 define('_MB_TAD_LUNCH3_MORE_INFO', '點此可至校園食材登錄平臺觀看詳細資訊');
+define('_MB_TAD_LUNCH3_RE_GET', '重新擷取資料');

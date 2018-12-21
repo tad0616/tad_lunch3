@@ -25,6 +25,15 @@ function tad_lunch3_today($options)
 
     include_once XOOPS_ROOT_PATH . "/modules/tad_lunch3/function.php";
     include_once XOOPS_ROOT_PATH . "/modules/tadtools/TadDataCenter.php";
+
+    $modhandler        = xoops_gethandler('module');
+    $xoopsModule       = $modhandler->getByDirname("tad_lunch3");
+    $config_handler    = xoops_gethandler('config');
+    $mid               = $xoopsModule->mid();
+    $xoopsModuleConfig = $config_handler->getConfigsByCat(0, $mid);
+
+    $SchoolIdArr = explode(';', $xoopsModuleConfig['SchoolId']);
+
     $TadDataCenter = new TadDataCenter('tad_lunch3');
 
     $block['options'] = $options;
@@ -32,13 +41,18 @@ function tad_lunch3_today($options)
     $period          = date('Y-m-d');
     $block['period'] = $period;
 
+    $same_id = array_intersect($SchoolIdArr, $school_arr);
+    if (empty($same_id)) {
+        $school_arr = $SchoolIdArr;
+    }
+
     $school_arr = explode(',', $options[7]);
     $i          = 0;
     foreach ($school_arr as $SchoolId) {
         $TadDataCenter->set_col('SchoolId', $SchoolId);
         $data = $TadDataCenter->getData($period);
 
-        if ($data) {
+        if ($data and strpos($data, 'BatchDataId') !== false) {
             $block['school'][$SchoolId] = json_decode($data[$period][0], true);
         } else {
             $json                       = get_url("https://fatraceschool.moe.gov.tw/school/{$SchoolId}");

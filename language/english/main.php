@@ -27,3 +27,4 @@ define('_MD_TAD_LUNCH3_KITCHEN', 'Vendor:');
 define('_MD_TAD_LUNCH3_MAINDISH', 'Main food');
 define('_MD_TAD_LUNCH3_NO_LUNCH', 'No meals for the day, or no information for that day!');
 define('_MD_TAD_LUNCH3_MORE_INFO', 'Click here to view the school\'s ingredients log on to watch the details');
+define('_MD_TAD_LUNCH3_RE_GET', 'Re-read data');

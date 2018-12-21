@@ -39,11 +39,12 @@ function tad_lunch3_list($period = "")
 
     $SchoolIdArr = explode(';', $xoopsModuleConfig['SchoolId']);
     $i           = 0;
+
     foreach ($SchoolIdArr as $SchoolId) {
         $TadDataCenter->set_col('SchoolId', $SchoolId);
         $data = $TadDataCenter->getData($period);
 
-        if ($data) {
+        if ($data and strpos($data, 'BatchDataId') !== false) {
             $lunch[$SchoolId] = json_decode($data[$period][0], true);
         } else {
             $json             = get_url("https://fatraceschool.moe.gov.tw/school/{$SchoolId}");
@@ -79,13 +80,28 @@ function tad_lunch3_list($period = "")
     $kitchenTab->rander();
 }
 
+function re_get($SchoolId, $period)
+{
+    //刪除資料：
+    include_once XOOPS_ROOT_PATH . "/modules/tadtools/TadDataCenter.php";
+    $TadDataCenter = new TadDataCenter('tad_lunch3');
+    $TadDataCenter->set_col('SchoolId', $SchoolId);
+    $TadDataCenter->delData($period, 0);
+
+}
+
 /*-----------執行動作判斷區----------*/
 include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
-$op     = system_CleanVars($_REQUEST, 'op', '', 'string');
-$period = system_CleanVars($_REQUEST, 'period', date('Y-m-d'), 'string');
+$op       = system_CleanVars($_REQUEST, 'op', '', 'string');
+$period   = system_CleanVars($_REQUEST, 'period', date('Y-m-d'), 'string');
+$SchoolId = system_CleanVars($_REQUEST, 'SchoolId', '', 'string');
 
 switch ($op) {
     /*---判斷動作請貼在下方---*/
+    case "re_get":
+        re_get($SchoolId, $period);
+        header("location: index.php?period=$period");
+        exit;
 
     default:
         tad_lunch3_list($period);

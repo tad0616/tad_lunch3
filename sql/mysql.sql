@@ -6,5 +6,5 @@ CREATE TABLE `tad_lunch3_data_center` (
   `data_value` text NOT NULL COMMENT '儲存值',
   `data_sort` mediumint(9) unsigned NOT NULL default 0 COMMENT '排序',
   PRIMARY KEY (`mid`,`col_name`,`col_sn`,`data_name`,`data_sort`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 

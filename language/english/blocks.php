@@ -33,3 +33,4 @@ define('_MB_TAD_LUNCH3_MAINDISH', 'The main food');
 define('_MB_TAD_LUNCH3_NO_LUNCH', 'No meals for the day, or no information for that day!');
 define('_MB_TAD_LUNCH3_TODAY_OPT7_TXT', '(You can change the school ID to your preference)');
 define('_MB_TAD_LUNCH3_MORE_INFO', 'Click here to go to the school\'s ingredients log on to watch the details');
+define('_MB_TAD_LUNCH3_RE_GET', 'Re-read data');
