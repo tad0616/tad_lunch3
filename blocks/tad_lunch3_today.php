@@ -49,6 +49,10 @@ function tad_lunch3_today($options)
     $school_arr = explode(',', $options[7]);
     $i          = 0;
     foreach ($school_arr as $SchoolId) {
+        if (empty($SchoolId)) {
+            continue;
+        }
+
         $TadDataCenter->set_col('SchoolId', $SchoolId);
         $data = $TadDataCenter->getData($period);
 
