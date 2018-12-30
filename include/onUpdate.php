@@ -17,21 +17,23 @@
  * @version    $Id $
  **/
 
-
 function xoops_module_update_tad_lunch3($module, $old_version)
 {
     global $xoopsDB;
 
-    //if(chk_chk1()) go_update1();
+    //加入id以及時間欄位
+    if (chk_data_center()) {
+        go_update_data_center();
+    }
 
     return true;
 }
 
-//檢查某欄位是否存在
-function chk_chk1()
+//加入id以及時間欄位
+function chk_data_center()
 {
     global $xoopsDB;
-    $sql    = "select count(`欄位`) from " . $xoopsDB->prefix("資料表");
+    $sql    = "select count(`update_time`) from " . $xoopsDB->prefix("tad_lunch3_data_center");
     $result = $xoopsDB->query($sql);
     if (empty($result)) {
         return true;
@@ -41,16 +43,15 @@ function chk_chk1()
 }
 
 //執行更新
-function go_update1()
+function go_update_data_center()
 {
     global $xoopsDB;
-    $sql = "ALTER TABLE " . $xoopsDB->prefix("資料表") . " ADD `欄位` smallint(5) NOT NULL";
+    $sql = "ALTER TABLE " . $xoopsDB->prefix("tad_lunch3_data_center") . "
+    ADD `col_id` varchar(100) NOT NULL DEFAULT '' COMMENT '辨識字串',
+    ADD  `update_time` datetime NOT NULL COMMENT '更新時間'";
     $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, $xoopsDB->error());
-
     return true;
 }
-
-
 
 //建立目錄
 if (!function_exists('mk_dir')) {

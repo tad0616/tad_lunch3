@@ -1,6 +1,8 @@
 tad_lunch3 1.4 (released on 2019-01-01)
 =================================================
 1.Support BootStrap4
+2.Support PHP 7.3
+3.Support MySQL database strict mode
 
 
 tad_lunch3 1.3 (released on 2018-05-16)

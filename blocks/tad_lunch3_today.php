@@ -191,6 +191,14 @@ function tad_lunch3_today_edit($options)
 {
 
     include_once XOOPS_ROOT_PATH . "/modules/tad_lunch3/function.php";
+
+    if (!file_exists(XOOPS_ROOT_PATH . "/modules/tadtools/mColorPicker.php")) {
+        redirect_header("index.php", 3, _MA_NEED_TADTOOLS);
+    }
+    include_once XOOPS_ROOT_PATH . "/modules/tadtools/mColorPicker.php";
+    $mColorPicker = new mColorPicker('.color');
+    $mColorPicker->render();
+
     $opt = block_schoolid($options[7]);
 
     //"直式或橫式"預設值
@@ -199,84 +207,59 @@ function tad_lunch3_today_edit($options)
 
     $form = "
     {$opt['js']}
-    <table>
-      <tr>
-        <th>
-          <!--圖片寬度-->
-          " . _MB_TAD_LUNCH3_TODAY_OPT0 . "
-        </th>
-        <td>
-          <input type='text' name='options[0]' value='{$options[0]}' size=20>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <!--圖片高度-->
-          " . _MB_TAD_LUNCH3_TODAY_OPT1 . "
-        </th>
-        <td>
-          <input type='text' name='options[1]' value='{$options[1]}' size=20>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <!--種類文字樣式-->
-          " . _MB_TAD_LUNCH3_TODAY_OPT2 . "
-        </th>
-        <td>
-          <input type='text' name='options[2]' value='{$options[2]}' size=100>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <!--菜色名稱文字樣式-->
-          " . _MB_TAD_LUNCH3_TODAY_OPT3 . "
-        </th>
-        <td>
-          <input type='text' name='options[3]' value='{$options[3]}' size=100>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <!--直式或橫式-->
-          " . _MB_TAD_LUNCH3_TODAY_OPT4 . "
-        </th>
-        <td>
-            <input type='radio' name='options[4]' value='0' $checked_4_0> 橫式
-            <input type='radio' name='options[4]' value='1' $checked_4_1> 直式
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <!--主食底色-->
-          " . _MB_TAD_LUNCH3_TODAY_OPT5 . "
-        </th>
-        <td>
-            <input type='color' name='options[5]' value='{$options[5]}'>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <!--一般底色-->
-          " . _MB_TAD_LUNCH3_TODAY_OPT6 . "
-        </th>
-        <td>
-        <input type='color' name='options[6]' value='{$options[6]}'>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <!--欲顯示學校-->
-          " . _MB_TAD_LUNCH3_TODAY_OPT7 . "
-        </th>
-        <td>
-        {$opt['form']}
-        <input type='hidden' name='options[7]' id='bb' value='{$options[7]}'>
-        <a href='" . XOOPS_URL . "/modules/system/admin.php?fct=preferences&op=showmod&mod={$opt['mid']}'>" . _MB_TAD_LUNCH3_TODAY_OPT7_TXT . "</a>
-        </td>
-      </tr>
-    </table>
-    ";
+    <ol class='my-form'>
+        <li class='my-row'>
+            <lable class='my-label'>" . _MB_TAD_LUNCH3_TODAY_OPT0 . "</lable>
+            <div class='my-content'>
+                <input type='text' class='my-input' name='options[0]' value='{$options[0]}' size=6>
+            </div>
+        </li>
+        <li class='my-row'>
+            <lable class='my-label'>" . _MB_TAD_LUNCH3_TODAY_OPT1 . "</lable>
+            <div class='my-content'>
+                <input type='text' class='my-input' name='options[1]' value='{$options[1]}' size=6>
+            </div>
+        </li>
+        <li class='my-row'>
+            <lable class='my-label'>" . _MB_TAD_LUNCH3_TODAY_OPT2 . "</lable>
+            <div class='my-content'>
+                <input type='text' class='my-input' name='options[2]' value='{$options[2]}' size=100>
+            </div>
+        </li>
+        <li class='my-row'>
+            <lable class='my-label'>" . _MB_TAD_LUNCH3_TODAY_OPT3 . "</lable>
+            <div class='my-content'>
+                <input type='text' class='my-input' name='options[3]' value='{$options[3]}' size=100>
+            </div>
+        </li>
+        <li class='my-row'>
+            <lable class='my-label'>" . _MB_TAD_LUNCH3_TODAY_OPT4 . "</lable>
+            <div class='my-content'>
+                <input type='radio' name='options[4]' value='0' $checked_4_0> 橫式
+                <input type='radio' name='options[4]' value='1' $checked_4_1> 直式
+            </div>
+        </li>
+        <li class='my-row'>
+            <lable class='my-label'>" . _MB_TAD_LUNCH3_TODAY_OPT5 . "</lable>
+            <div class='my-content'>
+                <input type='text' class='my-input color' data-hex='true' name='options[5]' value='{$options[5]}' size=8>
+            </div>
+        </li>
+        <li class='my-row'>
+            <lable class='my-label'>" . _MB_TAD_LUNCH3_TODAY_OPT6 . "</lable>
+            <div class='my-content'>
+                <input type='text' class='my-input color' data-hex='true' name='options[6]' value='{$options[6]}' size=8>
+            </div>
+        </li>
+        <li class='my-row'>
+            <lable class='my-label'>" . _MB_TAD_LUNCH3_TODAY_OPT7 . "</lable>
+            <div class='my-content'>
+                {$opt['form']}
+                <input type='hidden' name='options[7]' id='bb' value='{$options[7]}'>
+                <span class='my-help'><a href='" . XOOPS_URL . "/modules/system/admin.php?fct=preferences&op=showmod&mod={$opt['mid']}'>" . _MB_TAD_LUNCH3_TODAY_OPT7_TXT . "</a></span>
+            </div>
+        </li>
+    </ol>";
     return $form;
 }
 
