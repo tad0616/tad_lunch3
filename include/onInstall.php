@@ -21,16 +21,16 @@
 function xoops_module_install_tad_lunch3(&$module)
 {
 
-    mk_dir(XOOPS_ROOT_PATH . "/uploads/tad_lunch3");
-    mk_dir(XOOPS_ROOT_PATH . "/uploads/tad_lunch3/file");
-    mk_dir(XOOPS_ROOT_PATH . "/uploads/tad_lunch3/image");
-    mk_dir(XOOPS_ROOT_PATH . "/uploads/tad_lunch3/image/.thumbs");
+    tad_lunch3_mk_dir(XOOPS_ROOT_PATH . "/uploads/tad_lunch3");
+    tad_lunch3_mk_dir(XOOPS_ROOT_PATH . "/uploads/tad_lunch3/file");
+    tad_lunch3_mk_dir(XOOPS_ROOT_PATH . "/uploads/tad_lunch3/image");
+    tad_lunch3_mk_dir(XOOPS_ROOT_PATH . "/uploads/tad_lunch3/image/.thumbs");
 
     return true;
 }
 
 //建立目錄
-function mk_dir($dir = "")
+function tad_lunch3_mk_dir($dir = "")
 {
     //若無目錄名稱秀出警告訊息
     if (empty($dir)) {
