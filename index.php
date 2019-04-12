@@ -63,7 +63,7 @@ function tad_lunch3_list($period = "")
                 $j++;
             }
 
-            $TadDataCenter->saveCustomData(array($period => json_encode($lunch[$SchoolId], 256)));
+            $TadDataCenter->saveCustomData([$period => json_encode($lunch[$SchoolId], 256)]);
             $i++;
         }
     }

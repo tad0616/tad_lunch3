@@ -38,12 +38,12 @@ if (!function_exists('get_url')) {
             $data = curl_exec($ch);
             curl_close($ch);
         } elseif (function_exists('file_get_contents')) {
-            $arrContextOptions = array(
-                "ssl" => array(
+            $arrContextOptions = [
+                "ssl" => [
                     "verify_peer"      => false,
                     "verify_peer_name" => false,
-                ),
-            );
+                ],
+            ];
             $data = file_get_contents($url, false, stream_context_create($arrContextOptions));
         } else {
             // die('fopen');

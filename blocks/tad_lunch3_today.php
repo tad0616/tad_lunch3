@@ -75,7 +75,7 @@ function tad_lunch3_today($options)
                 $j++;
             }
 
-            $TadDataCenter->saveCustomData(array($period => json_encode($block['school'][$SchoolId], 256)));
+            $TadDataCenter->saveCustomData([$period => json_encode($block['school'][$SchoolId], 256)]);
             $i++;
         }
     }
