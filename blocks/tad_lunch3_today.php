@@ -26,9 +26,9 @@ function tad_lunch3_today($options)
     include_once XOOPS_ROOT_PATH . "/modules/tad_lunch3/function.php";
     include_once XOOPS_ROOT_PATH . "/modules/tadtools/TadDataCenter.php";
 
-    $modhandler        = xoops_gethandler('module');
+    $modhandler        = xoops_getHandler('module');
     $xoopsModule       = $modhandler->getByDirname("tad_lunch3");
-    $config_handler    = xoops_gethandler('config');
+    $config_handler    = xoops_getHandler('config');
     $mid               = $xoopsModule->mid();
     $xoopsModuleConfig = $config_handler->getConfigsByCat(0, $mid);
 
@@ -269,9 +269,9 @@ if (!function_exists("block_schoolid")) {
     {
         global $xoopsDB, $xoopsModule;
 
-        $modhandler        = xoops_gethandler('module');
+        $modhandler        = xoops_getHandler('module');
         $xoopsModule       = $modhandler->getByDirname("tad_lunch3");
-        $config_handler    = xoops_gethandler('config');
+        $config_handler    = xoops_getHandler('config');
         $mid               = $xoopsModule->mid();
         $xoopsModuleConfig = $config_handler->getConfigsByCat(0, $mid);
 
