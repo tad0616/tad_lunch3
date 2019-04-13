@@ -16,7 +16,6 @@
  * @author     tad
  * @version    $Id $
  **/
-
-include_once "../../mainfile.php";
-include_once "function.php";
-include_once "menu.php";
+include_once '../../mainfile.php';
+include_once 'function.php';
+include_once 'menu.php';

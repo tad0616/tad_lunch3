@@ -15,16 +15,14 @@
  * @since      2.5
  * @author     tad
  * @version    $Id $
+ * @param mixed $module
  **/
-
-use XoopsModules\Tad_lunch3\Utility;
-
 function xoops_module_uninstall_tad_lunch3($module)
 {
     global $xoopsDB;
-    $date = date("Ymd");
+    $date = date('Ymd');
 
-    rename(XOOPS_ROOT_PATH . "/uploads/tad_lunch3", XOOPS_ROOT_PATH . "/uploads/tad_lunch3_bak_{$date}");
+    rename(XOOPS_ROOT_PATH . '/uploads/tad_lunch3', XOOPS_ROOT_PATH . "/uploads/tad_lunch3_bak_{$date}");
 
     return true;
 }

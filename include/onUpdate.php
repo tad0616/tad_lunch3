@@ -16,7 +16,6 @@
  * @author     tad
  * @version    $Id $
  **/
-
 use XoopsModules\Tad_lunch3\Utility;
 
 function xoops_module_update_tad_lunch3($module, $old_version)
@@ -30,6 +29,3 @@ function xoops_module_update_tad_lunch3($module, $old_version)
 
     return true;
 }
-
-
-
