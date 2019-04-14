@@ -24,14 +24,14 @@ function tad_lunch3_today($options)
 {
     global $xoopsDB;
 
-    include_once XOOPS_ROOT_PATH . '/modules/tad_lunch3/function.php';
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/TadDataCenter.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tad_lunch3/function.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tadtools/TadDataCenter.php';
 
-    $modhandler = xoops_getHandler('module');
-    $xoopsModule = $modhandler->getByDirname('tad_lunch3');
-    $config_handler = xoops_getHandler('config');
+    $moduleHandler = xoops_getHandler('module');
+    $xoopsModule = $moduleHandler->getByDirname('tad_lunch3');
+    $configHandler = xoops_getHandler('config');
     $mid = $xoopsModule->mid();
-    $xoopsModuleConfig = $config_handler->getConfigsByCat(0, $mid);
+    $xoopsModuleConfig = $configHandler->getConfigsByCat(0, $mid);
 
     $SchoolIdArr = explode(';', $xoopsModuleConfig['SchoolId']);
 
@@ -84,7 +84,7 @@ function tad_lunch3_today($options)
     if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/easy_responsive_tabs.php')) {
         redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
     }
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/easy_responsive_tabs.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tadtools/easy_responsive_tabs.php';
     $responsive_tabs = new easy_responsive_tabs('#lunch3Tab');
     $responsive_tabs->rander();
     $kitchenTab = new easy_responsive_tabs('#kitchenTab');
@@ -190,12 +190,12 @@ function tad_lunch3_today($options)
 //區塊編輯函式 (tad_lunch3_today_edit)
 function tad_lunch3_today_edit($options)
 {
-    include_once XOOPS_ROOT_PATH . '/modules/tad_lunch3/function.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tad_lunch3/function.php';
 
     if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/mColorPicker.php')) {
         redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
     }
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/mColorPicker.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tadtools/mColorPicker.php';
     $mColorPicker = new mColorPicker('.color');
     $mColorPicker->render();
 
@@ -270,11 +270,11 @@ if (!function_exists('block_schoolid')) {
     {
         global $xoopsDB, $xoopsModule;
 
-        $modhandler = xoops_getHandler('module');
-        $xoopsModule = $modhandler->getByDirname('tad_lunch3');
-        $config_handler = xoops_getHandler('config');
+        $moduleHandler = xoops_getHandler('module');
+        $xoopsModule = $moduleHandler->getByDirname('tad_lunch3');
+        $configHandler = xoops_getHandler('config');
         $mid = $xoopsModule->mid();
-        $xoopsModuleConfig = $config_handler->getConfigsByCat(0, $mid);
+        $xoopsModuleConfig = $configHandler->getConfigsByCat(0, $mid);
 
         $SchoolIdArr = explode(';', $xoopsModuleConfig['SchoolId']);
 
