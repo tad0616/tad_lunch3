@@ -16,22 +16,20 @@
  * @author     tad
  * @version    $Id $
  **/
-
-
-$adminmenu = array();
+$adminmenu = [];
 $i = 1;
-$icon_dir=substr(XOOPS_VERSION,6,3)=='2.6'?"":"images/admin/";
+$icon_dir = '2.6' === mb_substr(XOOPS_VERSION, 6, 3) ? '' : 'images/admin/';
 
 $adminmenu[$i]['title'] = _MI_TAD_ADMIN_HOME;
-$adminmenu[$i]['link']  = 'admin/index.php' ;
-$adminmenu[$i]['desc']  = _MI_TAD_ADMIN_HOME_DESC ;
-$adminmenu[$i]['icon']  = 'images/admin/home.png' ;
+$adminmenu[$i]['link'] = 'admin/index.php';
+$adminmenu[$i]['desc'] = _MI_TAD_ADMIN_HOME_DESC;
+$adminmenu[$i]['icon'] = 'images/admin/home.png';
 
 $i++;
 $adminmenu[$i]['title'] = _MI_TADLUNCH3_ADMENU1;
-$adminmenu[$i]['link']  = 'admin/main.php';
-$adminmenu[$i]['desc']  = _MI_TADLUNCH3_ADMENU1_DESC;
-$adminmenu[$i]['icon']  = "{$icon_dir}button.png";
+$adminmenu[$i]['link'] = 'admin/main.php';
+$adminmenu[$i]['desc'] = _MI_TADLUNCH3_ADMENU1_DESC;
+$adminmenu[$i]['icon'] = "{$icon_dir}button.png";
 
 $i++;
 $adminmenu[$i]['title'] = _MI_TAD_ADMIN_ABOUT;

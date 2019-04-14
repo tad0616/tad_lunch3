@@ -16,7 +16,6 @@
  * @author     tad
  * @version    $Id $
  **/
-
 define('_MB_TAD_LUNCH3_TODAY_OPT0', '圖片寬度');
 define('_MB_TAD_LUNCH3_TODAY_OPT1', '圖片高度');
 define('_MB_TAD_LUNCH3_TODAY_OPT2', '種類文字樣式');

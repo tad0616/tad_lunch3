@@ -18,30 +18,29 @@
  **/
 
 /*-----------引入檔案區--------------*/
-$isAdmin                      = true;
+$isAdmin = true;
 $xoopsOption['template_main'] = 'tad_lunch3_adm_main.tpl';
-include_once "header.php";
-include_once "../function.php";
+include_once 'header.php';
+include_once '../function.php';
 
 /*-----------功能函數區--------------*/
 
 /*-----------執行動作判斷區----------*/
 include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
-$op                                  = system_CleanVars($_REQUEST, 'op', '', 'string');
+$op = system_CleanVars($_REQUEST, 'op', '', 'string');
 $midcol_namecol_sndata_namedata_sort = system_CleanVars($_REQUEST, 'midcol_namecol_sndata_namedata_sort', '', 'int');
 
 switch ($op) {
     /*---判斷動作請貼在下方---*/
 
     default:
-        $now_op = "tad_lunch3_readme";
+        $now_op = 'tad_lunch3_readme';
         break;
-
         /*---判斷動作請貼在上方---*/
 }
 
 /*-----------秀出結果區--------------*/
-$xoopsTpl->assign("isAdmin", true);
-$xoopsTpl->assign("now_op", $now_op);
+$xoopsTpl->assign('isAdmin', true);
+$xoopsTpl->assign('now_op', $now_op);
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/xoops_adm3.css');
 include_once 'footer.php';

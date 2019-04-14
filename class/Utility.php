@@ -1,4 +1,7 @@
-<?php namespace XoopsModules\Tad_lunch3;
+<?php
+
+namespace XoopsModules\Tad_lunch3;
+
 /*
  Utility Class Definition
 
@@ -18,14 +21,13 @@
  * @author       Mamba <mambax7@gmail.com>
  */
 
-
 /**
  * Class Utility
  */
 class Utility
 {
     //建立目錄
-    public static function mk_dir($dir = "")
+    public static function mk_dir($dir = '')
     {
         //若無目錄名稱秀出警告訊息
         if (empty($dir)) {
@@ -54,28 +56,30 @@ class Utility
         }
 
         while ($file = readdir($dir_handle)) {
-            if ($file != "." && $file != "..") {
-                if (!is_dir($dirname . "/" . $file)) {
-                    unlink($dirname . "/" . $file);
+            if ('.' !== $file && '..' !== $file) {
+                if (!is_dir($dirname . '/' . $file)) {
+                    unlink($dirname . '/' . $file);
                 } else {
                     self::delete_directory($dirname . '/' . $file);
                 }
-
             }
         }
         closedir($dir_handle);
         rmdir($dirname);
+
         return true;
     }
 
     //拷貝目錄
-    public static function full_copy($source = "", $target = "")
+    public static function full_copy($source = '', $target = '')
     {
         if (is_dir($source)) {
-            @mkdir($target);
+            if (!mkdir($target) && !is_dir($target)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $target));
+            }
             $d = dir($source);
             while (false !== ($entry = $d->read())) {
-                if ($entry == '.' || $entry == '..') {
+                if ('.' === $entry || '..' === $entry) {
                     continue;
                 }
 
@@ -97,10 +101,13 @@ class Utility
         if (!rename($oldfile, $newfile)) {
             if (copy($oldfile, $newfile)) {
                 unlink($oldfile);
+
                 return true;
             }
+
             return false;
         }
+
         return true;
     }
 
@@ -108,7 +115,7 @@ class Utility
     public static function chk_data_center()
     {
         global $xoopsDB;
-        $sql    = "select count(`update_time`) from " . $xoopsDB->prefix("tad_lunch3_data_center");
+        $sql = 'select count(`update_time`) from ' . $xoopsDB->prefix('tad_lunch3_data_center');
         $result = $xoopsDB->query($sql);
         if (empty($result)) {
             return true;
@@ -121,11 +128,11 @@ class Utility
     public static function go_update_data_center()
     {
         global $xoopsDB;
-        $sql = "ALTER TABLE " . $xoopsDB->prefix("tad_lunch3_data_center") . "
+        $sql = 'ALTER TABLE ' . $xoopsDB->prefix('tad_lunch3_data_center') . "
     ADD `col_id` varchar(100) NOT NULL DEFAULT '' COMMENT '辨識字串',
     ADD  `update_time` datetime NOT NULL COMMENT '更新時間'";
         $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, $xoopsDB->error());
+
         return true;
     }
-
 }
