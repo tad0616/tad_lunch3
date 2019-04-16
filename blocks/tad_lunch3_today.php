@@ -292,7 +292,7 @@ if (!function_exists('block_schoolid')) {
           arr[i] = document.getElementById('c{$schoolid}').value;
           i++;
           }";
-            $ckecked = (in_array($schoolid, $sc, true)) ? 'checked' : '';
+            $ckecked = (in_array($schoolid, $sc)) ? 'checked' : '';
             $option .= "<span style='white-space:nowrap;'><input type='checkbox' id='c{$schoolid}' value='{$schoolid}' class='bbv' onChange=bbv() $ckecked><label for='c{$schoolid}'>$schoolid</label></span> ";
         }
 
