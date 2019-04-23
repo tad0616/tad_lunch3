@@ -17,7 +17,9 @@
  * @author     tad
  * @version    $Id $
  * @param mixed $options
- **/
+ *
+ * @return mixed
+ */
 
 //區塊主函式 (tad_lunch3_today)
 function tad_lunch3_today($options)
