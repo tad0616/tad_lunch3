@@ -43,7 +43,7 @@ function tad_lunch3_list($period = '')
         $TadDataCenter->set_col('SchoolId', $SchoolId);
         $data = $TadDataCenter->getData($period);
 
-        if ($data and false !== mb_strpos($data, 'BatchDataId')) {
+        if ($data && false !== mb_strpos($data, 'BatchDataId')) {
             $lunch[$SchoolId] = json_decode($data[$period][0], true);
         } else {
             $json = get_url("https://fatraceschool.moe.gov.tw/school/{$SchoolId}");
