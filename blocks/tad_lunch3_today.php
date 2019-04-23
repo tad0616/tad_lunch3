@@ -82,7 +82,7 @@ function tad_lunch3_today($options)
     }
 
     if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/easy_responsive_tabs.php')) {
-        redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
+        redirect_header('index.php', 3, _TAD_NEED_TADTOOLS);
     }
     require_once XOOPS_ROOT_PATH . '/modules/tadtools/easy_responsive_tabs.php';
     $responsive_tabs = new easy_responsive_tabs('#lunch3Tab');
@@ -193,7 +193,7 @@ function tad_lunch3_today_edit($options)
     require_once XOOPS_ROOT_PATH . '/modules/tad_lunch3/function.php';
 
     if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/mColorPicker.php')) {
-        redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
+        redirect_header('index.php', 3, _TAD_NEED_TADTOOLS);
     }
     require_once XOOPS_ROOT_PATH . '/modules/tadtools/mColorPicker.php';
     $mColorPicker = new mColorPicker('.color');

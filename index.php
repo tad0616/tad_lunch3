@@ -70,7 +70,7 @@ function tad_lunch3_list($period = '')
     $xoopsTpl->assign('lunch', $lunch);
 
     if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/easy_responsive_tabs.php')) {
-        redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
+        redirect_header('index.php', 3, _TAD_NEED_TADTOOLS);
     }
     require_once XOOPS_ROOT_PATH . '/modules/tadtools/easy_responsive_tabs.php';
     $responsive_tabs = new easy_responsive_tabs('#lunch3Tab');
