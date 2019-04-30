@@ -1,22 +1,7 @@
 <?php
-/**
- * Tad Lunch3 module
- *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright  The XOOPS Project http://sourceforge.net/projects/xoops/
- * @license    http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package    Tad Lunch3
- * @since      2.5
- * @author     tad
- * @version    $Id $
- **/
-
+use XoopsModules\Tadtools\EasyResponsiveTabs;
+use XoopsModules\Tadtools\TadDataCenter;
+use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
 include 'header.php';
 $xoopsOption['template_main'] = 'tad_lunch3_index.tpl';
@@ -28,7 +13,6 @@ function tad_lunch3_list($period = '')
 {
     global $xoopsDB, $xoopsTpl, $xoopsModuleConfig;
 
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/TadDataCenter.php';
     $TadDataCenter = new TadDataCenter('tad_lunch3');
 
     if (empty($period)) {
@@ -69,20 +53,15 @@ function tad_lunch3_list($period = '')
 
     $xoopsTpl->assign('lunch', $lunch);
 
-    if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/easy_responsive_tabs.php')) {
-        redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
-    }
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/easy_responsive_tabs.php';
-    $responsive_tabs = new easy_responsive_tabs('#lunch3Tab');
+    $responsive_tabs = new EasyResponsiveTabs('#lunch3Tab');
     $responsive_tabs->rander();
-    $kitchenTab = new easy_responsive_tabs('#kitchenTab');
+    $kitchenTab = new EasyResponsiveTabs('#kitchenTab');
     $kitchenTab->rander();
 }
 
 function re_get($SchoolId, $period)
 {
     //刪除資料：
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/TadDataCenter.php';
     $TadDataCenter = new TadDataCenter('tad_lunch3');
     $TadDataCenter->set_col('SchoolId', $SchoolId);
     $TadDataCenter->delData($period, 0);
@@ -109,7 +88,7 @@ switch ($op) {
 }
 
 /*-----------秀出結果區--------------*/
-$xoopsTpl->assign('toolbar', toolbar_bootstrap($interface_menu));
+$xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu));
 $xoopsTpl->assign('isAdmin', $isAdmin);
 $xoopsTpl->assign('now_op', $op);
 include_once XOOPS_ROOT_PATH . '/footer.php';

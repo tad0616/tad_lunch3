@@ -1,31 +1,13 @@
 <?php
-
-/**
- * Tad Lunch3 module
- *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright  The XOOPS Project http://sourceforge.net/projects/xoops/
- * @license    http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package    Tad Lunch3
- * @since      2.5
- * @author     tad
- * @version    $Id $
- * @param mixed $options
- **/
-
+use XoopsModules\Tadtools\EasyResponsiveTabs;
+use XoopsModules\Tadtools\MColorPicker;
+use XoopsModules\Tadtools\TadDataCenter;
 //區塊主函式 (tad_lunch3_today)
 function tad_lunch3_today($options)
 {
     global $xoopsDB;
 
     include_once XOOPS_ROOT_PATH . '/modules/tad_lunch3/function.php';
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/TadDataCenter.php';
 
     $modhandler = xoops_getHandler('module');
     $xoopsModule = $modhandler->getByDirname('tad_lunch3');
@@ -81,13 +63,9 @@ function tad_lunch3_today($options)
         }
     }
 
-    if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/easy_responsive_tabs.php')) {
-        redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
-    }
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/easy_responsive_tabs.php';
-    $responsive_tabs = new easy_responsive_tabs('#lunch3Tab');
+    $responsive_tabs = new EasyResponsiveTabs('#lunch3Tab');
     $responsive_tabs->rander();
-    $kitchenTab = new easy_responsive_tabs('#kitchenTab');
+    $kitchenTab = new EasyResponsiveTabs('#kitchenTab');
     $kitchenTab->rander();
     // $block['json'] = var_export($block, true);
     return $block;
@@ -192,12 +170,8 @@ function tad_lunch3_today_edit($options)
 {
     include_once XOOPS_ROOT_PATH . '/modules/tad_lunch3/function.php';
 
-    if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/mColorPicker.php')) {
-        redirect_header('index.php', 3, _MA_NEED_TADTOOLS);
-    }
-    include_once XOOPS_ROOT_PATH . '/modules/tadtools/mColorPicker.php';
-    $mColorPicker = new mColorPicker('.color');
-    $mColorPicker->render();
+    $MColorPicker = new MColorPicker('.color');
+    $MColorPicker->render();
 
     $opt = block_schoolid($options[7]);
 
@@ -289,16 +263,16 @@ if (!function_exists('block_schoolid')) {
 
         foreach ($SchoolIdArr as $schoolid) {
             $js .= "if(document.getElementById('c{$schoolid}').checked){
-          arr[i] = document.getElementById('c{$schoolid}').value;
-          i++;
-          }";
+            arr[i] = document.getElementById('c{$schoolid}').value;
+            i++;
+            }";
             $ckecked = (in_array($schoolid, $sc)) ? 'checked' : '';
             $option .= "<span style='white-space:nowrap;'><input type='checkbox' id='c{$schoolid}' value='{$schoolid}' class='bbv' onChange=bbv() $ckecked><label for='c{$schoolid}'>$schoolid</label></span> ";
         }
 
         $js .= "document.getElementById('bb').value=arr.join(',');
-  }
-  </script>";
+        }
+        </script>";
 
         $main['js'] = $js;
         $main['form'] = $option;
