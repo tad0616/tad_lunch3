@@ -2,6 +2,10 @@
 use XoopsModules\Tadtools\EasyResponsiveTabs;
 use XoopsModules\Tadtools\MColorPicker;
 use XoopsModules\Tadtools\TadDataCenter;
+if (!class_exists('XoopsModules\Tadtools\TadDataCenter')) {
+    require XOOPS_ROOT_PATH . '/modules/tadtools/preloads/autoloader.php';
+}
+
 //區塊主函式 (tad_lunch3_today)
 function tad_lunch3_today($options)
 {
