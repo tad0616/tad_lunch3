@@ -28,12 +28,13 @@ function tad_lunch3_today($options)
     $period = date('Y-m-d');
     $block['period'] = $period;
 
+    $school_arr = explode(',', $options[7]);
+
     $same_id = array_intersect($SchoolIdArr, $school_arr);
     if (empty($same_id)) {
         $school_arr = $SchoolIdArr;
     }
 
-    $school_arr = explode(',', $options[7]);
     $i = 0;
     foreach ($school_arr as $SchoolId) {
         if (empty($SchoolId)) {
