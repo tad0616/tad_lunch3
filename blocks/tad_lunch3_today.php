@@ -1,25 +1,11 @@
 <?php
+use XoopsModules\Tadtools\EasyResponsiveTabs;
+use XoopsModules\Tadtools\MColorPicker;
+use XoopsModules\Tadtools\TadDataCenter;
 
-/**
- * Tad Lunch3 module
- *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright  The XOOPS Project http://sourceforge.net/projects/xoops/
- * @license    http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package    Tad Lunch3
- * @since      2.5
- * @author     tad
- * @version    $Id $
- * @param mixed $options
- *
- * @return mixed
- */
+if (!class_exists('XoopsModules\Tadtools\TadDataCenter')) {
+    require XOOPS_ROOT_PATH . '/modules/tadtools/preloads/autoloader.php';
+}
 
 //區塊主函式 (tad_lunch3_today)
 function tad_lunch3_today($options)
@@ -27,7 +13,6 @@ function tad_lunch3_today($options)
     global $xoopsDB;
 
     require_once XOOPS_ROOT_PATH . '/modules/tad_lunch3/function.php';
-    require_once XOOPS_ROOT_PATH . '/modules/tadtools/TadDataCenter.php';
 
     $moduleHandler = xoops_getHandler('module');
     $xoopsModule = $moduleHandler->getByDirname('tad_lunch3');
@@ -44,12 +29,13 @@ function tad_lunch3_today($options)
     $period = date('Y-m-d');
     $block['period'] = $period;
 
+    $school_arr = explode(',', $options[7]);
+
     $same_id = array_intersect($SchoolIdArr, $school_arr);
     if (empty($same_id)) {
         $school_arr = $SchoolIdArr;
     }
 
-    $school_arr = explode(',', $options[7]);
     $i = 0;
     foreach ($school_arr as $SchoolId) {
         if (empty($SchoolId)) {
@@ -83,13 +69,9 @@ function tad_lunch3_today($options)
         }
     }
 
-    if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/easy_responsive_tabs.php')) {
-        redirect_header('index.php', 3, _TAD_NEED_TADTOOLS);
-    }
-    require_once XOOPS_ROOT_PATH . '/modules/tadtools/easy_responsive_tabs.php';
-    $responsive_tabs = new easy_responsive_tabs('#lunch3Tab');
+    $responsive_tabs = new EasyResponsiveTabs('#lunch3Tab');
     $responsive_tabs->rander();
-    $kitchenTab = new easy_responsive_tabs('#kitchenTab');
+    $kitchenTab = new EasyResponsiveTabs('#kitchenTab');
     $kitchenTab->rander();
     // $block['json'] = var_export($block, true);
     return $block;
@@ -194,12 +176,8 @@ function tad_lunch3_today_edit($options)
 {
     require_once XOOPS_ROOT_PATH . '/modules/tad_lunch3/function.php';
 
-    if (!file_exists(XOOPS_ROOT_PATH . '/modules/tadtools/mColorPicker.php')) {
-        redirect_header('index.php', 3, _TAD_NEED_TADTOOLS);
-    }
-    require_once XOOPS_ROOT_PATH . '/modules/tadtools/mColorPicker.php';
-    $mColorPicker = new mColorPicker('.color');
-    $mColorPicker->render();
+    $MColorPicker = new MColorPicker('.color');
+    $MColorPicker->render();
 
     $opt = block_schoolid($options[7]);
 
