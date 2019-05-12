@@ -31,7 +31,7 @@ $modversion['dirname'] = basename(__DIR__);
 
 //---模組狀態資訊---//
 $modversion['status_version'] = '1.5';
-$modversion['release_date'] = '2019-05-10';
+$modversion['release_date'] = '2019/05/10';
 $modversion['module_website_url'] = 'https://tad0616.net';
 $modversion['module_website_name'] = _MI_TADLUNCH3_AUTHOR_WEB;
 $modversion['module_status'] = 'release';
