@@ -16,6 +16,6 @@
  * @author     tad
  * @version    $Id $
  **/
-include_once '../../mainfile.php';
-include_once 'function.php';
-include_once 'menu.php';
+require_once dirname(dirname(__DIR__)) . '/mainfile.php';
+require_once __DIR__ . '/function.php';
+require_once __DIR__ . '/menu.php';

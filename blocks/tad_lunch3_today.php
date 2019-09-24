@@ -2,6 +2,7 @@
 use XoopsModules\Tadtools\EasyResponsiveTabs;
 use XoopsModules\Tadtools\MColorPicker;
 use XoopsModules\Tadtools\TadDataCenter;
+
 if (!class_exists('XoopsModules\Tadtools\TadDataCenter')) {
     require XOOPS_ROOT_PATH . '/modules/tadtools/preloads/autoloader.php';
 }
@@ -11,13 +12,13 @@ function tad_lunch3_today($options)
 {
     global $xoopsDB;
 
-    include_once XOOPS_ROOT_PATH . '/modules/tad_lunch3/function.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tad_lunch3/function.php';
 
-    $modhandler = xoops_getHandler('module');
-    $xoopsModule = $modhandler->getByDirname('tad_lunch3');
-    $config_handler = xoops_getHandler('config');
+    $moduleHandler = xoops_getHandler('module');
+    $xoopsModule = $moduleHandler->getByDirname('tad_lunch3');
+    $configHandler = xoops_getHandler('config');
     $mid = $xoopsModule->mid();
-    $xoopsModuleConfig = $config_handler->getConfigsByCat(0, $mid);
+    $xoopsModuleConfig = $configHandler->getConfigsByCat(0, $mid);
 
     $SchoolIdArr = explode(';', $xoopsModuleConfig['SchoolId']);
 
@@ -44,7 +45,7 @@ function tad_lunch3_today($options)
         $TadDataCenter->set_col('SchoolId', $SchoolId);
         $data = $TadDataCenter->getData($period);
 
-        if ($data and false !== mb_strpos($data, 'BatchDataId')) {
+        if ($data && false !== mb_strpos($data, 'BatchDataId')) {
             $block['school'][$SchoolId] = json_decode($data[$period][0], true);
         } else {
             $json = get_url("https://fatraceschool.moe.gov.tw/school/{$SchoolId}");
@@ -173,7 +174,7 @@ function tad_lunch3_today($options)
 //區塊編輯函式 (tad_lunch3_today_edit)
 function tad_lunch3_today_edit($options)
 {
-    include_once XOOPS_ROOT_PATH . '/modules/tad_lunch3/function.php';
+    require_once XOOPS_ROOT_PATH . '/modules/tad_lunch3/function.php';
 
     $MColorPicker = new MColorPicker('.color');
     $MColorPicker->render();
@@ -249,11 +250,11 @@ if (!function_exists('block_schoolid')) {
     {
         global $xoopsDB, $xoopsModule;
 
-        $modhandler = xoops_getHandler('module');
-        $xoopsModule = $modhandler->getByDirname('tad_lunch3');
-        $config_handler = xoops_getHandler('config');
+        $moduleHandler = xoops_getHandler('module');
+        $xoopsModule = $moduleHandler->getByDirname('tad_lunch3');
+        $configHandler = xoops_getHandler('config');
         $mid = $xoopsModule->mid();
-        $xoopsModuleConfig = $config_handler->getConfigsByCat(0, $mid);
+        $xoopsModuleConfig = $configHandler->getConfigsByCat(0, $mid);
 
         $SchoolIdArr = explode(';', $xoopsModuleConfig['SchoolId']);
 
@@ -268,16 +269,16 @@ if (!function_exists('block_schoolid')) {
 
         foreach ($SchoolIdArr as $schoolid) {
             $js .= "if(document.getElementById('c{$schoolid}').checked){
-            arr[i] = document.getElementById('c{$schoolid}').value;
-            i++;
-            }";
+          arr[i] = document.getElementById('c{$schoolid}').value;
+          i++;
+          }";
             $ckecked = (in_array($schoolid, $sc)) ? 'checked' : '';
             $option .= "<span style='white-space:nowrap;'><input type='checkbox' id='c{$schoolid}' value='{$schoolid}' class='bbv' onChange=bbv() $ckecked><label for='c{$schoolid}'>$schoolid</label></span> ";
         }
 
         $js .= "document.getElementById('bb').value=arr.join(',');
-        }
-        </script>";
+  }
+  </script>";
 
         $main['js'] = $js;
         $main['form'] = $option;

@@ -3,9 +3,9 @@ use XoopsModules\Tadtools\EasyResponsiveTabs;
 use XoopsModules\Tadtools\TadDataCenter;
 use XoopsModules\Tadtools\Utility;
 /*-----------引入檔案區--------------*/
-include 'header.php';
+require __DIR__ . '/header.php';
 $xoopsOption['template_main'] = 'tad_lunch3_index.tpl';
-include_once XOOPS_ROOT_PATH . '/header.php';
+require_once XOOPS_ROOT_PATH . '/header.php';
 
 /*-----------功能函數區--------------*/
 
@@ -27,7 +27,7 @@ function tad_lunch3_list($period = '')
         $TadDataCenter->set_col('SchoolId', $SchoolId);
         $data = $TadDataCenter->getData($period);
 
-        if ($data and false !== mb_strpos($data, 'BatchDataId')) {
+        if ($data && false !== mb_strpos($data, 'BatchDataId')) {
             $lunch[$SchoolId] = json_decode($data[$period][0], true);
         } else {
             $json = get_url("https://fatraceschool.moe.gov.tw/school/{$SchoolId}");
@@ -68,7 +68,7 @@ function re_get($SchoolId, $period)
 }
 
 /*-----------執行動作判斷區----------*/
-include_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
+require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 $op = system_CleanVars($_REQUEST, 'op', '', 'string');
 $period = system_CleanVars($_REQUEST, 'period', date('Y-m-d'), 'string');
 $SchoolId = system_CleanVars($_REQUEST, 'SchoolId', '', 'string');
@@ -91,4 +91,4 @@ switch ($op) {
 $xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu));
 $xoopsTpl->assign('isAdmin', $isAdmin);
 $xoopsTpl->assign('now_op', $op);
-include_once XOOPS_ROOT_PATH . '/footer.php';
+require_once XOOPS_ROOT_PATH . '/footer.php';
