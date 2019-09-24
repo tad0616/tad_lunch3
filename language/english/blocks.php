@@ -24,6 +24,7 @@ define('_MB_TAD_LUNCH3_TODAY_OPT4', 'Vertical or Horizontal');
 define('_MB_TAD_LUNCH3_TODAY_OPT5', 'Main food background');
 define('_MB_TAD_LUNCH3_TODAY_OPT6', 'Other background');
 define('_MB_TAD_LUNCH3_TODAY_OPT7', 'Select the school ID to display');
+define('_MB_TAD_LUNCH3_TODAY_OPT8', 'School Name settings');
 define('_MB_TAD_LUNCH3_MEAL', 'Meals');
 define('_MB_TAD_LUNCH3_LUNCH', 'Lunch');
 define('_MB_TAD_LUNCH3_INFO', 'Information');

@@ -45,8 +45,8 @@ class Update
     {
         global $xoopsDB;
         $sql = 'ALTER TABLE ' . $xoopsDB->prefix('tad_lunch3_data_center') . "
-    ADD `col_id` varchar(100) NOT NULL DEFAULT '' COMMENT '辨識字串',
-    ADD  `update_time` datetime NOT NULL COMMENT '更新時間'";
+        ADD `col_id` varchar(100) NOT NULL DEFAULT '' COMMENT '辨識字串',
+        ADD  `update_time` datetime NOT NULL COMMENT '更新時間'";
         $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL, 3, $xoopsDB->error());
 
         return true;

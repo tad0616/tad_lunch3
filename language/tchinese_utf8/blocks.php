@@ -24,6 +24,7 @@ define('_MB_TAD_LUNCH3_TODAY_OPT4', '直式或橫式');
 define('_MB_TAD_LUNCH3_TODAY_OPT5', '主食底色');
 define('_MB_TAD_LUNCH3_TODAY_OPT6', '其他底色');
 define('_MB_TAD_LUNCH3_TODAY_OPT7', '選擇欲顯示學校編號');
+define('_MB_TAD_LUNCH3_TODAY_OPT8', '校名設定');
 define('_MB_TAD_LUNCH3_MEAL', '餐點');
 define('_MB_TAD_LUNCH3_LUNCH', '午餐');
 define('_MB_TAD_LUNCH3_INFO', '資訊');

@@ -67,6 +67,9 @@ function tad_lunch3_today($options)
             $TadDataCenter->saveCustomData([$period => json_encode($block['school'][$SchoolId], 256)]);
             $i++;
         }
+        if ($options[8]) {
+            $block['school'][$SchoolId]['SchoolName'] = $options[8];
+        }
     }
 
     $responsive_tabs = new EasyResponsiveTabs('#lunch3Tab');
@@ -74,6 +77,9 @@ function tad_lunch3_today($options)
     $kitchenTab = new EasyResponsiveTabs('#kitchenTab');
     $kitchenTab->rander();
     // $block['json'] = var_export($block, true);
+    if ($_GET['test']==1) {
+        die(var_dump($block));
+    }
     return $block;
 }
 
@@ -236,10 +242,16 @@ function tad_lunch3_today_edit($options)
             <div class='my-content'>
                 {$opt['form']}
                 <input type='hidden' name='options[7]' id='bb' value='{$options[7]}'>
-                <span class='my-help'><a href='" . XOOPS_URL . "/modules/system/admin.php?fct=preferences&op=showmod&mod={$opt['mid']}'>" . _MB_TAD_LUNCH3_TODAY_OPT7_TXT . '</a></span>
+                <span class='my-help'><a href='" . XOOPS_URL . "/modules/system/admin.php?fct=preferences&op=showmod&mod={$opt['mid']}'>" . _MB_TAD_LUNCH3_TODAY_OPT7_TXT . "</a></span>
             </div>
         </li>
-    </ol>';
+        <li class='my-row'>
+            <lable class='my-label'>" . _MB_TAD_LUNCH3_TODAY_OPT8 . "</lable>
+            <div class='my-content'>
+                <input type='text' class='my-input' name='options[8]' value='{$options[8]}'>
+            </div>
+        </li>
+    </ol>";
 
     return $form;
 }
