@@ -30,17 +30,17 @@ function tad_lunch3_list($period = '')
         if ($data && false !== mb_strpos($data, 'BatchDataId')) {
             $lunch[$SchoolId] = json_decode($data[$period][0], true);
         } else {
-            $json = get_url("https://fatraceschool.moe.gov.tw/school/{$SchoolId}");
+            $json = get_url("https://fatraceschool.k12ea.gov.tw/school/{$SchoolId}");
             $school = json_decode($json, true);
             $lunch[$SchoolId] = $school['data'];
 
-            $json = get_url("https://fatraceschool.moe.gov.tw/offered/meal?SchoolId={$SchoolId}&period={$period}&KitchenId=all");
+            $json = get_url("https://fatraceschool.k12ea.gov.tw/offered/meal?SchoolId={$SchoolId}&period={$period}&KitchenId=all");
             $meal = json_decode($json, true);
             $lunch[$SchoolId]['meal'] = $meal['data'];
 
             $j = 0;
             foreach ($meal['data'] as $m) {
-                $json = get_url("https://fatraceschool.moe.gov.tw/dish?BatchDataId={$m['BatchDataId']}");
+                $json = get_url("https://fatraceschool.k12ea.gov.tw/dish?BatchDataId={$m['BatchDataId']}");
                 $dish = json_decode($json, true);
                 $lunch[$SchoolId]['meal'][$j]['dish'] = $dish['data'];
                 $j++;

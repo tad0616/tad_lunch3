@@ -50,6 +50,6 @@
             <{/if}>
         <{/if}>
     <{/if}>
-    <p><a href="https://fatraceschool.moe.gov.tw/frontend/search.html?school=<{$SchoolId}>&period=<{$block.period}>" target="_blank"><{$smarty.const._MB_TAD_LUNCH3_MORE_INFO}></a></p>
+    <p><a href="https://fatraceschool.k12ea.gov.tw/frontend/search.html?school=<{$SchoolId}>&period=<{$block.period}>" target="_blank"><{$smarty.const._MB_TAD_LUNCH3_MORE_INFO}></a></p>
     <a href="<{$xoops_url}>/modules/tad_lunch3/index.php?op=re_get&SchoolId=<{$SchoolId}>&period=<{$block.period}>" class="btn btn-xs btn-info"><{$smarty.const._MB_TAD_LUNCH3_RE_GET}></a>
 <{/foreach}>

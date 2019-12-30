@@ -1,4 +1,9 @@
-Tad_lunch3 1.6 (released from 2019-09-24)
+tad_lunch3 1.7 (released on 2019-12-30)
+================================================ ==
+1. Update to new URL
+
+
+Tad_lunch3 1.6 (released on 2019-09-24)
 =========================================================
 1. Fixed an issue where data could not be retrieved manually
 2. Block join school name setting
