@@ -1,5 +1,5 @@
 <script type="text/javascript" src="<{$xoops_url}>/modules/tadtools/My97DatePicker/WdatePicker.js"></script>
-<{foreach from=$lunch item=s}>
+<{foreach from=$lunch key=SchoolId item=s}>
     <h3>
         <img src="images/groceries.png" alt="<{$s.SchoolName}><{$smarty.const._MD_TAD_LUNCH3_LUNCH}><{$smarty.const._MD_TAD_LUNCH3_INFO}>">
         <{$s.SchoolName}>
@@ -52,7 +52,7 @@
             <{/if}>
         <{/if}>
     <{else}>
-        <a href="<{$xoops_url}>/modules/tad_lunch3/index.php?op=re_get&SchoolId=<{$s.SchoolId}>&period=<{$period}>" class="btn btn-lg btn-info"><{$smarty.const._MD_TAD_LUNCH3_RE_GET}></a>
+        <a href="<{$xoops_url}>/modules/tad_lunch3/index.php?op=re_get&SchoolId=<{$SchoolId}>&period=<{$period}>" class="btn btn-lg btn-info"><{$smarty.const._MD_TAD_LUNCH3_RE_GET}></a>
     <{/if}>
-     <p><a href="https://fatraceschool.k12ea.gov.tw/frontend/search.html?school=<{$s.SchoolId}>&period=<{$period}>" target="_blank"><{$smarty.const._MD_TAD_LUNCH3_MORE_INFO}></a></p>
+     <p><a href="https://fatraceschool.k12ea.gov.tw/frontend/search.html?school=<{$SchoolId}>&period=<{$period}>" target="_blank"><{$smarty.const._MD_TAD_LUNCH3_MORE_INFO}></a></p>
 <{/foreach}>

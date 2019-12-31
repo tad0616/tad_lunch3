@@ -6,7 +6,7 @@ if (!function_exists('get_url')) {
     {
         if (function_exists('curl_init')) {
             $ch = curl_init();
-            $timeout = 2;
+            $timeout = 10;
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
             curl_setopt($ch, CURLOPT_URL, $url);

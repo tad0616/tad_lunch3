@@ -19,6 +19,7 @@ function tad_lunch3_list($period = '')
         $period = date('Y-m-d');
     }
     $xoopsTpl->assign('period', $period);
+    $xoopsTpl->assign('SchoolIdArr', 'ss');
 
     $SchoolIdArr = explode(';', $xoopsModuleConfig['SchoolId']);
     $i = 0;
@@ -52,6 +53,9 @@ function tad_lunch3_list($period = '')
     }
 
     $xoopsTpl->assign('lunch', $lunch);
+    if ($_GET['test'] == 1) {
+        Utility::dd($lunch);
+    }
 
     $responsive_tabs = new EasyResponsiveTabs('#lunch3Tab');
     $responsive_tabs->rander();

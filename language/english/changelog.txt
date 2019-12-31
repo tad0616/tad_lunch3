@@ -1,7 +1,7 @@
-tad_lunch3 1.7 (released on 2019-12-30)
+tad_lunch3 1.7 (released on 2019-12-31)
 ================================================ ==
 1. Update to new URL
-
+2.Fixed the problem that school code could not be caught on the module homepage
 
 Tad_lunch3 1.6 (released on 2019-09-24)
 =========================================================
