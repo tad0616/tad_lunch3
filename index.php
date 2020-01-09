@@ -74,7 +74,7 @@ function re_get($SchoolId, $period)
 /*-----------執行動作判斷區----------*/
 require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 $op = system_CleanVars($_REQUEST, 'op', '', 'string');
-$period = system_CleanVars($_REQUEST, 'period', date('Y-m-d'), 'string');
+$period = system_CleanVars($_REQUEST, 'period', date('Y-m-d'), 'date');
 $SchoolId = system_CleanVars($_REQUEST, 'SchoolId', '', 'string');
 
 switch ($op) {

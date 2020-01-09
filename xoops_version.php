@@ -20,7 +20,7 @@ $modversion = [];
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLUNCH3_NAME;
-$modversion['version'] = '1.7';
+$modversion['version'] = '1.8';
 $modversion['description'] = _MI_TADLUNCH3_DESC;
 $modversion['author'] = _MI_TADLUNCH3_AUTHOR;
 $modversion['credits'] = _MI_TADLUNCH3_CREDITS;
