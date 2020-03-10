@@ -86,7 +86,7 @@ $modversion['blocks'][$i]['description'] = _MI_TAD_LUNCH3_TODAY_BLOCK_DESC;
 $modversion['blocks'][$i]['show_func'] = 'tad_lunch3_today';
 $modversion['blocks'][$i]['template'] = 'tad_lunch3_today.tpl';
 $modversion['blocks'][$i]['edit_func'] = 'tad_lunch3_today_edit';
-$modversion['blocks'][$i]['options'] = '150px|150px|font-size:1em;|font-size:1.1em|0|#FAB333|#009688|64736421|';
+$modversion['blocks'][$i]['options'] = '150px|150px|font-size: 1em;|font-size: 0.8em;|0|#FAB333|#009688|64736421|';
 
 $i++;
 $modversion['config'][$i]['name'] = 'SchoolId';

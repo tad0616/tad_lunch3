@@ -1,6 +1,6 @@
 <style>
 #lunch_readme li{
-    font-size: 14pt;
+    font-size: 1.17em;
     padding: 6px;
     list-style-type: decimal;
 }
@@ -13,4 +13,3 @@
     <li><{$smarty.const._MA_TAD_LUNCH3_STEP4}></li>
     <li><{$smarty.const._MA_TAD_LUNCH3_STEP5}></li>
 </ol>
-
