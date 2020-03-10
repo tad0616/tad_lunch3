@@ -14,7 +14,6 @@ function tad_lunch3_list($period = '')
     global $xoopsDB, $xoopsTpl, $xoopsModuleConfig;
 
     $TadDataCenter = new TadDataCenter('tad_lunch3');
-
     if (empty($period)) {
         $period = date('Y-m-d');
     }
@@ -32,23 +31,27 @@ function tad_lunch3_list($period = '')
             $lunch[$SchoolId] = json_decode($data[$period][0], true);
         } else {
             $json = get_url("https://fatraceschool.k12ea.gov.tw/school/{$SchoolId}");
-            $school = json_decode($json, true);
-            $lunch[$SchoolId] = $school['data'];
+            if ($json) {
+                $school = json_decode($json, true);
+                $lunch[$SchoolId] = $school['data'];
 
-            $json = get_url("https://fatraceschool.k12ea.gov.tw/offered/meal?SchoolId={$SchoolId}&period={$period}&KitchenId=all");
-            $meal = json_decode($json, true);
-            $lunch[$SchoolId]['meal'] = $meal['data'];
+                $json = get_url("https://fatraceschool.k12ea.gov.tw/offered/meal?SchoolId={$SchoolId}&period={$period}&KitchenId=all");
+                if ($json) {
+                    $meal = json_decode($json, true);
+                    $lunch[$SchoolId]['meal'] = $meal['data'];
 
-            $j = 0;
-            foreach ($meal['data'] as $m) {
-                $json = get_url("https://fatraceschool.k12ea.gov.tw/dish?BatchDataId={$m['BatchDataId']}");
-                $dish = json_decode($json, true);
-                $lunch[$SchoolId]['meal'][$j]['dish'] = $dish['data'];
-                $j++;
+                    $j = 0;
+                    foreach ($meal['data'] as $m) {
+                        $json = get_url("https://fatraceschool.k12ea.gov.tw/dish?BatchDataId={$m['BatchDataId']}");
+                        $dish = json_decode($json, true);
+                        $lunch[$SchoolId]['meal'][$j]['dish'] = $dish['data'];
+                        $j++;
+                    }
+
+                    $TadDataCenter->saveCustomData([$period => json_encode($lunch[$SchoolId], 256)]);
+                    $i++;
+                }
             }
-
-            $TadDataCenter->saveCustomData([$period => json_encode($lunch[$SchoolId], 256)]);
-            $i++;
         }
     }
 
@@ -74,7 +77,11 @@ function re_get($SchoolId, $period)
 /*-----------執行動作判斷區----------*/
 require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
 $op = system_CleanVars($_REQUEST, 'op', '', 'string');
-$period = system_CleanVars($_REQUEST, 'period', date('Y-m-d'), 'date');
+$period = system_CleanVars($_REQUEST, 'period', time(), 'date');
+if (!empty($period)) {
+    $period = date('Y-m-d', $period);
+}
+
 $SchoolId = system_CleanVars($_REQUEST, 'SchoolId', '', 'string');
 
 switch ($op) {
