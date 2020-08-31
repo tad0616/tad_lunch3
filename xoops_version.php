@@ -20,7 +20,7 @@ $modversion = [];
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLUNCH3_NAME;
-$modversion['version'] = '1.9';
+$modversion['version'] = '2.0';
 $modversion['description'] = _MI_TADLUNCH3_DESC;
 $modversion['author'] = _MI_TADLUNCH3_AUTHOR;
 $modversion['credits'] = _MI_TADLUNCH3_CREDITS;
@@ -30,8 +30,8 @@ $modversion['image'] = 'images/logo.png';
 $modversion['dirname'] = basename(__DIR__);
 
 //---模組狀態資訊---//
-$modversion['status_version'] = '1.9';
-$modversion['release_date'] = '2020/03/14';
+$modversion['status_version'] = '2.0';
+$modversion['release_date'] = '2020/08/31';
 $modversion['module_website_url'] = 'https://tad0616.net';
 $modversion['module_website_name'] = _MI_TADLUNCH3_AUTHOR_WEB;
 $modversion['module_status'] = 'release';
@@ -86,7 +86,7 @@ $modversion['blocks'][$i]['description'] = _MI_TAD_LUNCH3_TODAY_BLOCK_DESC;
 $modversion['blocks'][$i]['show_func'] = 'tad_lunch3_today';
 $modversion['blocks'][$i]['template'] = 'tad_lunch3_today.tpl';
 $modversion['blocks'][$i]['edit_func'] = 'tad_lunch3_today_edit';
-$modversion['blocks'][$i]['options'] = '150px|150px|font-size: 1em;|font-size: 0.8em;|0|#FAB333|#009688|64736421|';
+$modversion['blocks'][$i]['options'] = '150px|150px|font-size: 1rem;|font-size: 0.8rem;|0|#FAB333|#009688|64736421||font-size:1.3rem;|1';
 
 $i++;
 $modversion['config'][$i]['name'] = 'SchoolId';

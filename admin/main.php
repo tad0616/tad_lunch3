@@ -1,4 +1,5 @@
 <?php
+use Xmf\Request;
 /**
  * Tad Lunch3 module
  *
@@ -26,9 +27,8 @@ require_once dirname(__DIR__) . '/function.php';
 /*-----------功能函數區--------------*/
 
 /*-----------執行動作判斷區----------*/
-require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
-$op = system_CleanVars($_REQUEST, 'op', '', 'string');
-$midcol_namecol_sndata_namedata_sort = system_CleanVars($_REQUEST, 'midcol_namecol_sndata_namedata_sort', '', 'int');
+
+$op = Request::getString('op');
 
 switch ($op) {
     /*---判斷動作請貼在下方---*/
@@ -42,5 +42,10 @@ switch ($op) {
 /*-----------秀出結果區--------------*/
 $xoopsTpl->assign('isAdmin', true);
 $xoopsTpl->assign('now_op', $now_op);
-$xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/xoops_adm3.css');
+$xoTheme->addStylesheet('/modules/tadtools/css/font-awesome/css/font-awesome.css');
+if ($_SEESION['bootstrap'] == 3) {
+    $xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/xoops_adm3.css');
+} else {
+    $xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/xoops_adm4.css');
+}
 require_once __DIR__ . '/footer.php';

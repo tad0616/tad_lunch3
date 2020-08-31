@@ -1,3 +1,9 @@
+tad_lunch3 2.0 (Released on 2020-08-31)
+=============================================================
+1. Add block title CSS setting
+2.Add Supplier Display Setting
+3.Merge Template
+
 tad_lunch3 1.9 (2020-03-14 released)
 ================================================
 1. Correction for accessibility 2.0 AA standard

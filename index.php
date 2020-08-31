@@ -1,4 +1,5 @@
 <?php
+use Xmf\Request;
 use XoopsModules\Tadtools\EasyResponsiveTabs;
 use XoopsModules\Tadtools\TadDataCenter;
 use XoopsModules\Tadtools\Utility;
@@ -75,14 +76,13 @@ function re_get($SchoolId, $period)
 }
 
 /*-----------執行動作判斷區----------*/
-require_once $GLOBALS['xoops']->path('/modules/system/include/functions.php');
-$op = system_CleanVars($_REQUEST, 'op', '', 'string');
-$period = system_CleanVars($_REQUEST, 'period', time(), 'date');
+$op = Request::getString('op');
+$SchoolId = Request::getString('SchoolId');
+$period = Request::getInt('period', time());
+
 if (!empty($period)) {
     $period = date('Y-m-d', $period);
 }
-
-$SchoolId = system_CleanVars($_REQUEST, 'SchoolId', '', 'string');
 
 switch ($op) {
     /*---判斷動作請貼在下方---*/
@@ -102,4 +102,5 @@ switch ($op) {
 $xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu));
 $xoopsTpl->assign('isAdmin', $isAdmin);
 $xoopsTpl->assign('now_op', $op);
+$xoTheme->addStylesheet('/modules/tad_lunch3/css/module.css');
 require_once XOOPS_ROOT_PATH . '/footer.php';

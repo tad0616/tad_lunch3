@@ -72,12 +72,15 @@ function tad_lunch3_today($options)
         }
     }
 
+    $block['title_css'] = $options[9];
+    $block['show_kitchen'] = $options[10];
+
     $responsive_tabs = new EasyResponsiveTabs('#lunch3Tab');
     $responsive_tabs->rander();
     $kitchenTab = new EasyResponsiveTabs('#kitchenTab');
     $kitchenTab->rander();
     // $block['json'] = var_export($block, true);
-    if ($_GET['test']==1) {
+    if ($_GET['test'] == 1) {
         die(var_dump($block));
     }
     return $block;
@@ -190,6 +193,9 @@ function tad_lunch3_today_edit($options)
     //"直式或橫式"預設值
     $checked_4_0 = ('0' == $options[4]) ? 'checked' : '';
     $checked_4_1 = ('1' == $options[4]) ? 'checked' : '';
+    //"是否顯示供應商？"預設值
+    $checked_10_0 = ('0' == $options[10]) ? 'checked' : '';
+    $checked_10_1 = ('0' != $options[10]) ? 'checked' : '';
 
     $form = "
     {$opt['js']}
@@ -221,8 +227,8 @@ function tad_lunch3_today_edit($options)
         <li class='my-row'>
             <lable class='my-label'>" . _MB_TAD_LUNCH3_TODAY_OPT4 . "</lable>
             <div class='my-content'>
-                <input type='radio' name='options[4]' value='0' $checked_4_0> 橫式
-                <input type='radio' name='options[4]' value='1' $checked_4_1> 直式
+                <input type='radio' name='options[4]' value='0' $checked_4_0> " . _MB_TAD_LUNCH3_HORIZONTAL . "
+                <input type='radio' name='options[4]' value='1' $checked_4_1> " . _MB_TAD_LUNCH3_VERTICAL . "
             </div>
         </li>
         <li class='my-row'>
@@ -251,6 +257,19 @@ function tad_lunch3_today_edit($options)
                 <input type='text' class='my-input' name='options[8]' value='{$options[8]}'>
             </div>
         </li>
+        <li class='my-row'>
+            <lable class='my-label'>" . _MB_TAD_LUNCH3_TODAY_OPT9 . "</lable>
+            <div class='my-content'>
+                <input type='text' class='my-input' name='options[9]' value='{$options[9]}' size=100>
+            </div>
+        </li>
+        <li class='my-row'>
+            <lable class='my-label'>" . _MB_TAD_LUNCH3_TODAY_OPT10 . "</lable>
+            <div class='my-content'>
+                <input type='radio' name='options[10]' value='0' $checked_10_0> " . _NO . "
+                <input type='radio' name='options[10]' value='1' $checked_10_1> " . _YES . "
+            </div>
+        </li>
     </ol>";
 
     return $form;
@@ -275,22 +294,22 @@ if (!function_exists('block_schoolid')) {
         }
 
         $js = '<script>
-          function bbv(){
-            i=0;
-            var arr = new Array();';
+            function bbv(){
+                i=0;
+                var arr = new Array();';
 
         foreach ($SchoolIdArr as $schoolid) {
             $js .= "if(document.getElementById('c{$schoolid}').checked){
-          arr[i] = document.getElementById('c{$schoolid}').value;
-          i++;
-          }";
+                    arr[i] = document.getElementById('c{$schoolid}').value;
+                    i++;
+                    }";
             $ckecked = (in_array($schoolid, $sc)) ? 'checked' : '';
             $option .= "<span style='white-space:nowrap;'><input type='checkbox' id='c{$schoolid}' value='{$schoolid}' class='bbv' onChange=bbv() $ckecked><label for='c{$schoolid}'>$schoolid</label></span> ";
         }
 
         $js .= "document.getElementById('bb').value=arr.join(',');
-  }
-  </script>";
+                }
+                </script>";
 
         $main['js'] = $js;
         $main['form'] = $option;
