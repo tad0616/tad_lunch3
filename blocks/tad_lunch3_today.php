@@ -2,6 +2,7 @@
 use XoopsModules\Tadtools\EasyResponsiveTabs;
 use XoopsModules\Tadtools\MColorPicker;
 use XoopsModules\Tadtools\TadDataCenter;
+use XoopsModules\Tadtools\Utility;
 
 if (!class_exists('XoopsModules\Tadtools\TadDataCenter')) {
     require XOOPS_ROOT_PATH . '/modules/tadtools/preloads/autoloader.php';
@@ -48,24 +49,26 @@ function tad_lunch3_today($options)
         if ($data && false !== mb_strpos($data, 'BatchDataId')) {
             $block['school'][$SchoolId] = json_decode($data[$period][0], true);
         } else {
-            $json = get_url("https://fatraceschool.k12ea.gov.tw/school/{$SchoolId}");
-            $school = json_decode($json, true);
+            $json1 = get_url("https://fatraceschool.k12ea.gov.tw/school/{$SchoolId}");
+            $school = json_decode($json1, true);
             $block['school'][$SchoolId] = $school['data'];
 
-            $json = get_url("https://fatraceschool.k12ea.gov.tw/offered/meal?SchoolId={$SchoolId}&period={$period}&KitchenId=all");
-            $meal = json_decode($json, true);
-            $block['school'][$SchoolId]['meal'] = $meal['data'];
+            $json2 = get_url("https://fatraceschool.k12ea.gov.tw/offered/meal?SchoolId={$SchoolId}&period={$period}&KitchenId=all");
+            $meal = json_decode($json2, true);
+            if ($meal['data']) {
+                $block['school'][$SchoolId]['meal'] = $meal['data'];
 
-            $j = 0;
-            foreach ($meal['data'] as $m) {
-                $json = get_url("https://fatraceschool.k12ea.gov.tw/dish?BatchDataId={$m['BatchDataId']}");
-                $dish = json_decode($json, true);
-                $block['school'][$SchoolId]['meal'][$j]['dish'] = $dish['data'];
-                $j++;
+                $j = 0;
+                foreach ($meal['data'] as $m) {
+                    $json3 = get_url("https://fatraceschool.k12ea.gov.tw/dish?BatchDataId={$m['BatchDataId']}");
+                    $dish = json_decode($json3, true);
+                    $block['school'][$SchoolId]['meal'][$j]['dish'] = $dish['data'];
+                    $j++;
+                }
+
+                $TadDataCenter->saveCustomData([$period => json_encode($block['school'][$SchoolId], 256)]);
+                $i++;
             }
-
-            $TadDataCenter->saveCustomData([$period => json_encode($block['school'][$SchoolId], 256)]);
-            $i++;
         }
         if ($options[8]) {
             $block['school'][$SchoolId]['SchoolName'] = $options[8];
@@ -79,9 +82,8 @@ function tad_lunch3_today($options)
     $responsive_tabs->rander();
     $kitchenTab = new EasyResponsiveTabs('#kitchenTab');
     $kitchenTab->rander();
-    // $block['json'] = var_export($block, true);
     if ($_GET['test'] == 1) {
-        die(var_dump($block));
+        Utility::dd($block);
     }
     return $block;
 }
