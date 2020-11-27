@@ -12,6 +12,9 @@
             <{$smarty.const._MB_TAD_LUNCH3_INFO}>
         </a>
     </h3>
+    <div>
+        <code><{$block.annotated_text}></code>
+    </div>
     <{if $s.meal}>
         <{if $s.meal.0.MenuTypeName!=_MB_TAD_LUNCH3_LUNCH}>
             <div id="lunch3Tab">

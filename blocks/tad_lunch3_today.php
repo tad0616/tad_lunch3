@@ -77,14 +77,12 @@ function tad_lunch3_today($options)
 
     $block['title_css'] = $options[9];
     $block['show_kitchen'] = $options[10];
+    $block['annotated_text'] = $options[11];
 
     $responsive_tabs = new EasyResponsiveTabs('#lunch3Tab');
     $responsive_tabs->rander();
     $kitchenTab = new EasyResponsiveTabs('#kitchenTab');
     $kitchenTab->rander();
-    if ($_GET['test'] == 1) {
-        Utility::dd($block);
-    }
     return $block;
 }
 
@@ -270,6 +268,12 @@ function tad_lunch3_today_edit($options)
             <div class='my-content'>
                 <input type='radio' name='options[10]' value='0' $checked_10_0> " . _NO . "
                 <input type='radio' name='options[10]' value='1' $checked_10_1> " . _YES . "
+            </div>
+        </li>
+        <li class='my-row'>
+            <lable class='my-label'>" . _MB_TAD_LUNCH3_TODAY_OPT11 . "</lable>
+            <div class='my-content'>
+                <input type='text' class='my-input' name='options[11]' value='{$options[11]}' size=100>
             </div>
         </li>
     </ol>";

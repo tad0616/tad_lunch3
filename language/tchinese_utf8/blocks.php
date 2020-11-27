@@ -27,6 +27,7 @@ define('_MB_TAD_LUNCH3_TODAY_OPT7', '選擇欲顯示學校編號');
 define('_MB_TAD_LUNCH3_TODAY_OPT8', '校名設定');
 define('_MB_TAD_LUNCH3_TODAY_OPT9', '校名CSS設定');
 define('_MB_TAD_LUNCH3_TODAY_OPT10', '是否顯示供應商？');
+define('_MB_TAD_LUNCH3_TODAY_OPT11', '註解文字');
 define('_MB_TAD_LUNCH3_MEAL', '餐點');
 define('_MB_TAD_LUNCH3_LUNCH', '午餐');
 define('_MB_TAD_LUNCH3_INFO', '資訊');

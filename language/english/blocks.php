@@ -27,6 +27,7 @@ define('_MB_TAD_LUNCH3_TODAY_OPT7', 'Select the school ID to display');
 define('_MB_TAD_LUNCH3_TODAY_OPT8', 'School Name settings');
 define('_MB_TAD_LUNCH3_TODAY_OPT9', 'School Name CSS Settings');
 define('_MB_TAD_LUNCH3_TODAY_OPT10', 'Does it show the supplier?');
+define('_MB_TAD_LUNCH3_TODAY_OPT11', 'Annotated Text');
 define('_MB_TAD_LUNCH3_MEAL', 'Meals');
 define('_MB_TAD_LUNCH3_LUNCH', 'Lunch');
 define('_MB_TAD_LUNCH3_INFO', 'Information');

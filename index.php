@@ -59,10 +59,6 @@ function tad_lunch3_list($period = '')
     }
 
     $xoopsTpl->assign('lunch', $lunch);
-    if ($_GET['test'] == 1) {
-        Utility::dd($lunch);
-    }
-
     $responsive_tabs = new EasyResponsiveTabs('#lunch3Tab');
     $responsive_tabs->rander();
     $kitchenTab = new EasyResponsiveTabs('#kitchenTab');
