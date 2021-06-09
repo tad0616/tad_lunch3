@@ -11,6 +11,10 @@ function xoops_module_update_tad_lunch3($module, $old_version)
     if (Update::chk_data_center()) {
         Update::go_update_data_center();
     }
+    // data_center 加入 sort
+    if (Update::chk_dc_sort()) {
+        Update::go_dc_sort();
+    }
 
     return true;
 }

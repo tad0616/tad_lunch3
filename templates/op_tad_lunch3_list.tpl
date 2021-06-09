@@ -54,5 +54,5 @@
     <{else}>
         <a href="<{$xoops_url}>/modules/tad_lunch3/index.php?op=re_get&SchoolId=<{$SchoolId}>&period=<{$period}>" class="btn btn-lg btn-info"><{$smarty.const._MD_TAD_LUNCH3_RE_GET}></a>
     <{/if}>
-     <p><a href="https://fatraceschool.k12ea.gov.tw/frontend/search.html?school=<{$SchoolId}>&period=<{$period}>" target="_blank"><{$smarty.const._MD_TAD_LUNCH3_MORE_INFO}></a></p>
+    <p><a href="https://fatraceschool.k12ea.gov.tw/frontend/search.html?school=<{$SchoolId}>&period=<{$period}>" target="_blank"><{$smarty.const._MD_TAD_LUNCH3_MORE_INFO}></a></p>
 <{/foreach}>
