@@ -1,3 +1,9 @@
+tad_lunch3 2.1 (Released 2021-07-28)
+================================================
+1. Add "Comment Text" function to the block
+2. Adjust tad_lunch3_data_center field
+
+
 tad_lunch3 2.0 (Released on 2020-08-31)
 =============================================================
 1. Add block title CSS setting

@@ -20,7 +20,7 @@ $modversion = [];
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLUNCH3_NAME;
-$modversion['version'] = '2.0';
+$modversion['version'] = '2.1';
 $modversion['description'] = _MI_TADLUNCH3_DESC;
 $modversion['author'] = _MI_TADLUNCH3_AUTHOR;
 $modversion['credits'] = _MI_TADLUNCH3_CREDITS;
@@ -30,8 +30,8 @@ $modversion['image'] = 'images/logo.png';
 $modversion['dirname'] = basename(__DIR__);
 
 //---模組狀態資訊---//
-$modversion['status_version'] = '2.0';
-$modversion['release_date'] = '2020/08/31';
+$modversion['status_version'] = '2.1';
+$modversion['release_date'] = '2021/07/28';
 $modversion['module_website_url'] = 'https://tad0616.net';
 $modversion['module_website_name'] = _MI_TADLUNCH3_AUTHOR_WEB;
 $modversion['module_status'] = 'release';
