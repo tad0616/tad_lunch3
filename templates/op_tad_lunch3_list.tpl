@@ -4,7 +4,7 @@
         <img src="images/groceries.png" alt="<{$s.SchoolName}><{$smarty.const._MD_TAD_LUNCH3_LUNCH}><{$smarty.const._MD_TAD_LUNCH3_INFO}>">
         <{$s.SchoolName}>
         <form action="index.php" method="get" style="display: inline-block;">
-            <input type="text" name="period" value="<{$period}>" onClick="WdatePicker({onpicking:function(dp){window.location.href='index.php?period=' + dp.cal.getNewDateStr();},dateFmt:'yyyy-MM-dd', startDate:'%y-%M-%d'})"  style="width: 180px;border:none; color:rgb(39, 106, 145);text-align:center; cursor: pointer;">
+            <input type="text" name="period" value="<{$period}>" onClick="WdatePicker({onpicking:function(dp){window.location.href='index.php?period=' + dp.cal.getNewDateStr();},dateFmt:'yyyy-MM-dd', startDate:'%y-%M-%d'})"  style="width: 180px;border:none; color:rgb(39, 106, 145);text-align:center; cursor: pointer;" title="Please select a date">
         </form>
         <{if $s.meal.1.MenuTypeName}>
             <{$smarty.const._MD_TAD_LUNCH3_MEAL}>

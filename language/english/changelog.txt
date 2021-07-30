@@ -1,3 +1,7 @@
+tad_lunch3 2.2 (Released 2021-07-30)
+================================================
+1.Compliant with 2021/07 AA accessibility standard
+
 tad_lunch3 2.1 (Released 2021-07-28)
 ================================================
 1. Add "Comment Text" function to the block
