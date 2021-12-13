@@ -12,17 +12,19 @@ require_once XOOPS_ROOT_PATH . '/header.php';
 
 function tad_lunch3_list($period = '')
 {
-    global $xoopsDB, $xoopsTpl, $xoopsModuleConfig;
+    global $xoopsTpl, $xoopsModuleConfig;
 
     $TadDataCenter = new TadDataCenter('tad_lunch3');
-    if (empty($period)) {
+    if (empty($period) or !validateDate($period)) {
         $period = date('Y-m-d');
     }
     $xoopsTpl->assign('period', $period);
-    $xoopsTpl->assign('SchoolIdArr', 'ss');
+    // $xoopsTpl->assign('SchoolIdArr', 'ss');
 
     $SchoolIdArr = explode(';', $xoopsModuleConfig['SchoolId']);
     $i = 0;
+    $lunch_error = '';
+    $lunch = [];
 
     foreach ($SchoolIdArr as $SchoolId) {
         $TadDataCenter->set_col('SchoolId', $SchoolId);
@@ -52,8 +54,17 @@ function tad_lunch3_list($period = '')
 
                         $TadDataCenter->saveCustomData([$period => json_encode($lunch[$SchoolId], 256)]);
                         $i++;
+                    } else {
+                        $lunch[$SchoolId]['lunch_error'] = $lunch_error = _MD_TAD_LUNCH3_UNABLE_TO_PARSE . "https://fatraceschool.k12ea.gov.tw/offered/meal?SchoolId={$SchoolId}&period={$period}&KitchenId=all";
+                        $TadDataCenter->saveCustomData([$period => $lunch_error]);
                     }
+                } else {
+                    $lunch[$SchoolId]['lunch_error'] = $lunch_error = _MD_TAD_LUNCH3_NO_RESPONSE . "https://fatraceschool.k12ea.gov.tw/offered/meal?SchoolId={$SchoolId}&period={$period}&KitchenId=all";
+                    $TadDataCenter->saveCustomData([$period => $lunch_error]);
                 }
+            } else {
+                $lunch[$SchoolId]['lunch_error'] = $lunch_error = _MD_TAD_LUNCH3_NO_RESPONSE . "https://fatraceschool.k12ea.gov.tw/school/{$SchoolId}";
+                $TadDataCenter->saveCustomData([$period => $lunch_error]);
             }
         }
     }
@@ -73,6 +84,11 @@ function re_get($SchoolId, $period)
     $TadDataCenter->delData($period, 0);
 }
 
+function validateDate($date, $format = 'Y-m-d')
+{
+    $d = DateTime::createFromFormat($format, $date);
+    return $d && $d->format($format) == $date;
+}
 /*-----------執行動作判斷區----------*/
 $op = Request::getString('op');
 $SchoolId = Request::getString('SchoolId');

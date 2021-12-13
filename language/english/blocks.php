@@ -39,3 +39,5 @@ define('_MB_TAD_LUNCH3_MORE_INFO', 'Click here to go to the school\'s ingredient
 define('_MB_TAD_LUNCH3_RE_GET', 'Re-read data');
 define('_MB_TAD_LUNCH3_HORIZONTAL', 'Horizontal');
 define('_MB_TAD_LUNCH3_VERTICAL', 'Vertical');
+define('_MB_TAD_LUNCH3_NO_RESPONSE', 'No response information available:');
+define('_MB_TAD_LUNCH3_UNABLE_TO_PARSE', 'Unable to parse response data:');

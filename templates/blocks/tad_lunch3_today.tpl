@@ -15,7 +15,12 @@
     <div>
         <code><{$block.annotated_text}></code>
     </div>
-    <{if $s.meal}>
+
+    <{if $s.lunch_error}>
+        <div class="alert alert-danger">
+            <{$s.lunch_error}>
+        </div>
+    <{elseif $s.meal}>
         <{if $s.meal.0.MenuTypeName!=_MB_TAD_LUNCH3_LUNCH}>
             <div id="lunch3Tab">
                 <ul class="resp-tabs-list vert">

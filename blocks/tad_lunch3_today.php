@@ -50,24 +50,37 @@ function tad_lunch3_today($options)
             $block['school'][$SchoolId] = json_decode($data[$period][0], true);
         } else {
             $json1 = get_url("https://fatraceschool.k12ea.gov.tw/school/{$SchoolId}");
-            $school = json_decode($json1, true);
-            $block['school'][$SchoolId] = $school['data'];
+            if ($json1) {
+                $school = json_decode($json1, true);
+                $block['school'][$SchoolId] = $school['data'];
 
-            $json2 = get_url("https://fatraceschool.k12ea.gov.tw/offered/meal?SchoolId={$SchoolId}&period={$period}&KitchenId=all");
-            $meal = json_decode($json2, true);
-            if ($meal['data']) {
-                $block['school'][$SchoolId]['meal'] = $meal['data'];
+                $json2 = get_url("https://fatraceschool.k12ea.gov.tw/offered/meal?SchoolId={$SchoolId}&period={$period}&KitchenId=all");
+                if ($json2) {
+                    $meal = json_decode($json2, true);
+                    if ($meal['data']) {
+                        $block['school'][$SchoolId]['meal'] = $meal['data'];
 
-                $j = 0;
-                foreach ($meal['data'] as $m) {
-                    $json3 = get_url("https://fatraceschool.k12ea.gov.tw/dish?BatchDataId={$m['BatchDataId']}");
-                    $dish = json_decode($json3, true);
-                    $block['school'][$SchoolId]['meal'][$j]['dish'] = $dish['data'];
-                    $j++;
+                        $j = 0;
+                        foreach ($meal['data'] as $m) {
+                            $json3 = get_url("https://fatraceschool.k12ea.gov.tw/dish?BatchDataId={$m['BatchDataId']}");
+                            $dish = json_decode($json3, true);
+                            $block['school'][$SchoolId]['meal'][$j]['dish'] = $dish['data'];
+                            $j++;
+                        }
+
+                        $TadDataCenter->saveCustomData([$period => json_encode($block['school'][$SchoolId], 256)]);
+                        $i++;
+                    } else {
+                        $block['school'][$SchoolId]['lunch_error'] = $lunch_error = _MB_TAD_LUNCH3_UNABLE_TO_PARSE . "https://fatraceschool.k12ea.gov.tw/offered/meal?SchoolId={$SchoolId}&period={$period}&KitchenId=all";
+                        $TadDataCenter->saveCustomData([$period => $lunch_error]);
+                    }
+                } else {
+                    $block['school'][$SchoolId]['lunch_error'] = $lunch_error = _MB_TAD_LUNCH3_NO_RESPONSE . "https://fatraceschool.k12ea.gov.tw/offered/meal?SchoolId={$SchoolId}&period={$period}&KitchenId=all";
+                    $TadDataCenter->saveCustomData([$period => $lunch_error]);
                 }
-
-                $TadDataCenter->saveCustomData([$period => json_encode($block['school'][$SchoolId], 256)]);
-                $i++;
+            } else {
+                $block['school'][$SchoolId]['lunch_error'] = $lunch_error = _MB_TAD_LUNCH3_NO_RESPONSE . "https://fatraceschool.k12ea.gov.tw/school/{$SchoolId}";
+                $TadDataCenter->saveCustomData([$period => $lunch_error]);
             }
         }
         if ($options[8]) {

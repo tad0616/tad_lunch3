@@ -14,7 +14,11 @@
         <{$smarty.const._MD_TAD_LUNCH3_INFO}>
     </h3>
 
-    <{if $s.meal}>
+    <{if $s.lunch_error}>
+        <div class="alert alert-danger">
+            <{$s.lunch_error}>
+        </div>
+    <{elseif $s.meal}>
         <{if $s.meal.0.MenuTypeName!=_MD_TAD_LUNCH3_LUNCH}>
             <div id="lunch3Tab">
                 <ul class="resp-tabs-list vert">

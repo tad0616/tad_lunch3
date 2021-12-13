@@ -39,3 +39,5 @@ define('_MB_TAD_LUNCH3_MORE_INFO', '點此可至校園食材登錄平臺觀看�
 define('_MB_TAD_LUNCH3_RE_GET', '重新擷取資料');
 define('_MB_TAD_LUNCH3_HORIZONTAL', '橫式');
 define('_MB_TAD_LUNCH3_VERTICAL', '直式');
+define('_MB_TAD_LUNCH3_NO_RESPONSE', '無法取得回應資料：');
+define('_MB_TAD_LUNCH3_UNABLE_TO_PARSE', '無法解析回應資料：');
