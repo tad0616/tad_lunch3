@@ -22,6 +22,9 @@ function tad_lunch3_list($period = '')
     // $xoopsTpl->assign('SchoolIdArr', 'ss');
 
     $SchoolIdArr = explode(';', $xoopsModuleConfig['SchoolId']);
+    $lunch_note = $xoopsModuleConfig['lunch_note'];
+    $xoopsTpl->assign('lunch_note', $lunch_note);
+
     $i = 0;
     $lunch_error = '';
     $lunch = [];
@@ -81,7 +84,7 @@ function re_get($SchoolId, $period)
     //刪除資料：
     $TadDataCenter = new TadDataCenter('tad_lunch3');
     $TadDataCenter->set_col('SchoolId', $SchoolId);
-    $TadDataCenter->delData($period, 0);
+    $TadDataCenter->delData($period);
 }
 
 function validateDate($date, $format = 'Y-m-d')

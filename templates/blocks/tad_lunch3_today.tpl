@@ -13,7 +13,13 @@
         </a>
     </h3>
     <div>
-        <code><{$block.annotated_text}></code>
+        <{if $block.annotated_text}>
+            <div><code><{$block.annotated_text}></code></div>
+        <{/if}>
+        <{if $block.lunch_note}>
+            <div><code><{$block.lunch_note}></code></div>
+        <{/if}>
+
     </div>
 
     <{if $s.lunch_error}>
@@ -31,7 +37,7 @@
 
                 <div class="resp-tabs-container vert">
                     <{foreach from=$s.meal item=m}>
-                        <{includeq file="$xoops_rootpath/modules/tad_lunch3/templates/blocks/tad_lunch3_dish.tpl"}>
+                        <{include file="$xoops_rootpath/modules/tad_lunch3/templates/blocks/tad_lunch3_dish.tpl"}>
                     <{/foreach}>
                 </div>
             </div>
@@ -46,7 +52,7 @@
 
                     <div class="resp-tabs-container vert">
                         <{foreach from=$s.meal item=m}>
-                            <{includeq file="$xoops_rootpath/modules/tad_lunch3/templates/blocks/tad_lunch3_dish.tpl"}>
+                            <{include file="$xoops_rootpath/modules/tad_lunch3/templates/blocks/tad_lunch3_dish.tpl"}>
                         <{/foreach}>
                     </div>
                 </div>
@@ -55,7 +61,7 @@
                     <{if $m.KitchenName=='1'}>
                         <h4><{if $m.KitchenName!=$s.SchoolName}><{$smarty.const._MB_TAD_LUNCH3_KITCHEN}><{$m.KitchenName}><{/if}></h4>
                     <{/if}>
-                    <{includeq file="$xoops_rootpath/modules/tad_lunch3/templates/blocks/tad_lunch3_dish.tpl"}>
+                    <{include file="$xoops_rootpath/modules/tad_lunch3/templates/blocks/tad_lunch3_dish.tpl"}>
                 <{/foreach}>
             <{/if}>
         <{/if}>

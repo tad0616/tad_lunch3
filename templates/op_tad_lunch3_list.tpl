@@ -29,7 +29,7 @@
 
                 <div class="resp-tabs-container vert">
                     <{foreach from=$s.meal item=m}>
-                        <{includeq file="$xoops_rootpath/modules/tad_lunch3/templates/sub_tad_lunch3_dish.tpl"}>
+                        <{include file="$xoops_rootpath/modules/tad_lunch3/templates/sub_tad_lunch3_dish.tpl"}>
                     <{/foreach}>
                 </div>
             </div>
@@ -44,14 +44,14 @@
 
                     <div class="resp-tabs-container vert">
                         <{foreach from=$s.meal item=m}>
-                            <{includeq file="$xoops_rootpath/modules/tad_lunch3/templates/sub_tad_lunch3_dish.tpl"}>
+                            <{include file="$xoops_rootpath/modules/tad_lunch3/templates/sub_tad_lunch3_dish.tpl"}>
                         <{/foreach}>
                     </div>
                 </div>
             <{else}>
                 <{foreach from=$s.meal item=m}>
                     <h4><{if $m.KitchenName!=$s.SchoolName}><{$smarty.const._MD_TAD_LUNCH3_KITCHEN}><{$m.KitchenName}><{/if}></h4>
-                    <{includeq file="$xoops_rootpath/modules/tad_lunch3/templates/sub_tad_lunch3_dish.tpl"}>
+                    <{include file="$xoops_rootpath/modules/tad_lunch3/templates/sub_tad_lunch3_dish.tpl"}>
                 <{/foreach}>
             <{/if}>
         <{/if}>
@@ -60,3 +60,7 @@
     <{/if}>
     <p><a href="https://fatraceschool.k12ea.gov.tw/frontend/search.html?school=<{$SchoolId}>&period=<{$period}>" target="_blank"><{$smarty.const._MD_TAD_LUNCH3_MORE_INFO}></a></p>
 <{/foreach}>
+
+<{if $lunch_note}>
+    <div><code><{$lunch_note}></code></div>
+<{/if}>

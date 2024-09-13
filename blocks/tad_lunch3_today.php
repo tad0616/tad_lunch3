@@ -22,6 +22,7 @@ function tad_lunch3_today($options)
     $xoopsModuleConfig = $configHandler->getConfigsByCat(0, $mid);
 
     $SchoolIdArr = explode(';', $xoopsModuleConfig['SchoolId']);
+    $block['lunch_note'] = $xoopsModuleConfig['lunch_note'];
 
     $TadDataCenter = new TadDataCenter('tad_lunch3');
 
@@ -316,7 +317,7 @@ if (!function_exists('block_schoolid')) {
             function bbv(){
                 i=0;
                 var arr = new Array();';
-
+        $option = '';
         foreach ($SchoolIdArr as $schoolid) {
             $js .= "if(document.getElementById('c{$schoolid}').checked){
                     arr[i] = document.getElementById('c{$schoolid}').value;

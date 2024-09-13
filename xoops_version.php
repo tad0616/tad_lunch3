@@ -20,7 +20,8 @@ $modversion = [];
 
 //---模組基本資訊---//
 $modversion['name'] = _MI_TADLUNCH3_NAME;
-$modversion['version'] = '2.3';
+// $modversion['version'] = '2.4';
+$modversion['version'] = $_SESSION['xoops_version'] >= 20511 ? '3.0.0-Stable' : '3.0';
 $modversion['description'] = _MI_TADLUNCH3_DESC;
 $modversion['author'] = _MI_TADLUNCH3_AUTHOR;
 $modversion['credits'] = _MI_TADLUNCH3_CREDITS;
@@ -30,8 +31,7 @@ $modversion['image'] = 'images/logo.png';
 $modversion['dirname'] = basename(__DIR__);
 
 //---模組狀態資訊---//
-$modversion['status_version'] = '2.3';
-$modversion['release_date'] = '2021/12/01';
+$modversion['release_date'] = '2024/04/30';
 $modversion['module_website_url'] = 'https://tad0616.net';
 $modversion['module_website_name'] = _MI_TADLUNCH3_AUTHOR_WEB;
 $modversion['module_status'] = 'release';
@@ -95,3 +95,11 @@ $modversion['config'][$i]['description'] = '_MI_TADLUNCH3_SCHOOLID_DESC';
 $modversion['config'][$i]['formtype'] = 'textbox';
 $modversion['config'][$i]['valuetype'] = 'text';
 $modversion['config'][$i]['default'] = '64736421';
+
+$i++;
+$modversion['config'][$i]['name'] = 'lunch_note';
+$modversion['config'][$i]['title'] = '_MI_TADLUNCH3_LUNCH_NOTE';
+$modversion['config'][$i]['description'] = '_MI_TADLUNCH3_LUNCH_NOTE_DESC';
+$modversion['config'][$i]['formtype'] = 'textarea';
+$modversion['config'][$i]['valuetype'] = 'text';
+$modversion['config'][$i]['default'] = _MI_TADLUNCH3_LUNCH_NOTE_DEF;
