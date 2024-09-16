@@ -13,16 +13,16 @@
         </a>
     </h3>
     <div>
-        <{if $block.annotated_text}>
+        <{if $block.annotated_text|default:false}>
             <div><code><{$block.annotated_text}></code></div>
         <{/if}>
-        <{if $block.lunch_note}>
+        <{if $block.lunch_note|default:false}>
             <div><code><{$block.lunch_note}></code></div>
         <{/if}>
 
     </div>
 
-    <{if $s.lunch_error}>
+    <{if $s.lunch_error|default:false}>
         <div class="alert alert-danger">
             <{$s.lunch_error}>
         </div>

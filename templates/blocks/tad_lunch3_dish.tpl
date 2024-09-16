@@ -1,6 +1,6 @@
 <div>
     <{foreach from=$m.dish item=d}>
-        <{if $d.DishType}>
+        <{if $d.DishType|default:false}>
             <div style="<{if $block.options.4!=1}>width:<{$block.options.0}>;display: inline-block;<{else}>width:100%;<{/if}> margin:2px; background-color: <{if $d.DishType==$smarty.const._MB_TAD_LUNCH3_MAINDISH}><{$block.options.5}><{else}><{$block.options.6}><{/if}>;">
                 <img src="https://fatraceschool.k12ea.gov.tw/dish/pic/<{$d.DishId}>" style="width:<{$block.options.0}>;height:<{$block.options.1}>;" alt="<{$d.DishName}>">
                 <{if $block.options.4!=1}>

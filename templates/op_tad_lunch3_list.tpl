@@ -14,7 +14,7 @@
         <{$smarty.const._MD_TAD_LUNCH3_INFO}>
     </h3>
 
-    <{if $s.lunch_error}>
+    <{if $s.lunch_error|default:false}>
         <div class="alert alert-danger">
             <{$s.lunch_error}>
         </div>
@@ -61,6 +61,6 @@
     <p><a href="https://fatraceschool.k12ea.gov.tw/frontend/search.html?school=<{$SchoolId}>&period=<{$period}>" target="_blank"><{$smarty.const._MD_TAD_LUNCH3_MORE_INFO}></a></p>
 <{/foreach}>
 
-<{if $lunch_note}>
+<{if $lunch_note|default:false}>
     <div><code><{$lunch_note}></code></div>
 <{/if}>
