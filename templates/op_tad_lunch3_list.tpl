@@ -4,7 +4,7 @@
         <img src="images/groceries.png" alt="<{$s.SchoolName}><{$smarty.const._MD_TAD_LUNCH3_LUNCH}><{$smarty.const._MD_TAD_LUNCH3_INFO}>">
         <{$s.SchoolName}>
         <form action="index.php" method="get" style="display: inline-block;">
-            <input type="text" name="period" value="<{$period}>" onClick="WdatePicker({onpicking:function(dp){window.location.href='index.php?period=' + dp.cal.getNewDateStr();},dateFmt:'yyyy-MM-dd', startDate:'%y-%M-%d'})"  style="width: 180px;border:none; color:rgb(39, 106, 145);text-align:center; cursor: pointer;" title="Please select a date">
+            <input type="text" name="period" value="<{$period|default:''}>" onClick="WdatePicker({onpicking:function(dp){window.location.href='index.php?period=' + dp.cal.getNewDateStr();},dateFmt:'yyyy-MM-dd', startDate:'%y-%M-%d'})"  style="width: 180px;border:none; color:rgb(39, 106, 145);text-align:center; cursor: pointer;" title="Please select a date">
         </form>
         <{if $s.meal.1.MenuTypeName}>
             <{$smarty.const._MD_TAD_LUNCH3_MEAL}>
@@ -56,11 +56,11 @@
             <{/if}>
         <{/if}>
     <{else}>
-        <a href="<{$xoops_url}>/modules/tad_lunch3/index.php?op=re_get&SchoolId=<{$SchoolId}>&period=<{$period}>" class="btn btn-lg btn-info"><{$smarty.const._MD_TAD_LUNCH3_RE_GET}></a>
+        <a href="<{$xoops_url}>/modules/tad_lunch3/index.php?op=re_get&SchoolId=<{$SchoolId|default:''}>&period=<{$period|default:''}>" class="btn btn-lg btn-info"><{$smarty.const._MD_TAD_LUNCH3_RE_GET}></a>
     <{/if}>
-    <p><a href="https://fatraceschool.k12ea.gov.tw/frontend/search.html?school=<{$SchoolId}>&period=<{$period}>" target="_blank"><{$smarty.const._MD_TAD_LUNCH3_MORE_INFO}></a></p>
+    <p><a href="https://fatraceschool.k12ea.gov.tw/frontend/search.html?school=<{$SchoolId|default:''}>&period=<{$period|default:''}>" target="_blank"><{$smarty.const._MD_TAD_LUNCH3_MORE_INFO}></a></p>
 <{/foreach}>
 
 <{if $lunch_note|default:false}>
-    <div><code><{$lunch_note}></code></div>
+    <div><code><{$lunch_note|default:''}></code></div>
 <{/if}>

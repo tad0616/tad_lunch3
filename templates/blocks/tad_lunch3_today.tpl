@@ -4,7 +4,7 @@
         <a href="<{$xoops_url}>/modules/tad_lunch3/index.php?period=<{$block.period}>">
             <{$s.SchoolName}>
             <{$block.period}>
-            <{if $s.meal.1.MenuTypeName}>
+            <{if $s.meal.1.MenuTypeName|default:false}>
                 <{$smarty.const._MB_TAD_LUNCH3_MEAL}>
             <{else}>
                 <{$smarty.const._MB_TAD_LUNCH3_LUNCH}>
@@ -26,7 +26,7 @@
         <div class="alert alert-danger">
             <{$s.lunch_error}>
         </div>
-    <{elseif $s.meal}>
+    <{elseif $s.meal|default:false}>
         <{if $s.meal.0.MenuTypeName!=_MB_TAD_LUNCH3_LUNCH}>
             <div id="lunch3Tab">
                 <ul class="resp-tabs-list vert">
@@ -42,7 +42,7 @@
                 </div>
             </div>
         <{else}>
-            <{if $s.meal.1.KitchenName}>
+            <{if $s.meal.1.KitchenName|default:false}>
                 <div id="kitchenTab">
                     <ul class="resp-tabs-list vert">
                         <{foreach from=$s.meal item=m}>
@@ -66,6 +66,6 @@
             <{/if}>
         <{/if}>
     <{/if}>
-    <p><a href="https://fatraceschool.k12ea.gov.tw/frontend/search.html?school=<{$SchoolId}>&period=<{$block.period}>" target="_blank"><{$smarty.const._MB_TAD_LUNCH3_MORE_INFO}></a></p>
-    <a href="<{$xoops_url}>/modules/tad_lunch3/index.php?op=re_get&SchoolId=<{$SchoolId}>&period=<{$block.period}>" class="btn btn-sm btn-info"><{$smarty.const._MB_TAD_LUNCH3_RE_GET}></a>
+    <p><a href="https://fatraceschool.k12ea.gov.tw/frontend/search.html?school=<{$SchoolId|default:''}>&period=<{$block.period}>" target="_blank"><{$smarty.const._MB_TAD_LUNCH3_MORE_INFO}></a></p>
+    <a href="<{$xoops_url}>/modules/tad_lunch3/index.php?op=re_get&SchoolId=<{$SchoolId|default:''}>&period=<{$block.period}>" class="btn btn-sm btn-info"><{$smarty.const._MB_TAD_LUNCH3_RE_GET}></a>
 <{/foreach}>

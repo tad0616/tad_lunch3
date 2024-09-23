@@ -47,7 +47,7 @@ function tad_lunch3_today($options)
         $TadDataCenter->set_col('SchoolId', $SchoolId);
         $data = $TadDataCenter->getData($period);
 
-        if ($data && false !== mb_strpos($data, 'BatchDataId')) {
+        if (isset($data[$period][0]) && false !== mb_strpos($data[$period][0], 'BatchDataId')) {
             $block['school'][$SchoolId] = json_decode($data[$period][0], true);
         } else {
             $json1 = get_url("https://fatraceschool.k12ea.gov.tw/school/{$SchoolId}");
