@@ -11,9 +11,6 @@ if (!class_exists('XoopsModules\Tadtools\TadDataCenter')) {
 //區塊主函式 (tad_lunch3_today)
 function tad_lunch3_today($options)
 {
-    global $xoopsDB;
-
-    require_once XOOPS_ROOT_PATH . '/modules/tad_lunch3/function.php';
 
     $moduleHandler = xoops_getHandler('module');
     $xoopsModule = $moduleHandler->getByDirname('tad_lunch3');
@@ -50,12 +47,12 @@ function tad_lunch3_today($options)
         if (isset($data[$period][0]) && false !== mb_strpos($data[$period][0], 'BatchDataId')) {
             $block['school'][$SchoolId] = json_decode($data[$period][0], true);
         } else {
-            $json1 = get_url("https://fatraceschool.k12ea.gov.tw/school/{$SchoolId}");
+            $json1 = Utility::vita_get_url_content("https://fatraceschool.k12ea.gov.tw/school/{$SchoolId}");
             if ($json1) {
                 $school = json_decode($json1, true);
                 $block['school'][$SchoolId] = $school['data'];
 
-                $json2 = get_url("https://fatraceschool.k12ea.gov.tw/offered/meal?SchoolId={$SchoolId}&period={$period}&KitchenId=all");
+                $json2 = Utility::vita_get_url_content("https://fatraceschool.k12ea.gov.tw/offered/meal?SchoolId={$SchoolId}&period={$period}&KitchenId=all");
                 if ($json2) {
                     $meal = json_decode($json2, true);
                     if ($meal['data']) {
@@ -63,7 +60,7 @@ function tad_lunch3_today($options)
 
                         $j = 0;
                         foreach ($meal['data'] as $m) {
-                            $json3 = get_url("https://fatraceschool.k12ea.gov.tw/dish?BatchDataId={$m['BatchDataId']}");
+                            $json3 = Utility::vita_get_url_content("https://fatraceschool.k12ea.gov.tw/dish?BatchDataId={$m['BatchDataId']}");
                             $dish = json_decode($json3, true);
                             $block['school'][$SchoolId]['meal'][$j]['dish'] = $dish['data'];
                             $j++;
@@ -197,10 +194,9 @@ function tad_lunch3_today($options)
 //區塊編輯函式 (tad_lunch3_today_edit)
 function tad_lunch3_today_edit($options)
 {
-    require_once XOOPS_ROOT_PATH . '/modules/tad_lunch3/function.php';
 
-    $MColorPicker = new MColorPicker('.color');
-    $MColorPicker->render();
+    $MColorPicker = new MColorPicker('.color-picker');
+    $MColorPicker->render('bootstrap');
 
     $opt = block_schoolid($options[7]);
 
@@ -212,6 +208,12 @@ function tad_lunch3_today_edit($options)
     $checked_10_1 = ('0' != $options[10]) ? 'checked' : '';
 
     $form = "
+    <style>
+    .color-picker {
+        width: 80%;
+        display: inline-block;
+    }
+    </style>
     {$opt['js']}
     <ol class='my-form'>
         <li class='my-row'>
@@ -248,13 +250,17 @@ function tad_lunch3_today_edit($options)
         <li class='my-row'>
             <lable class='my-label'>" . _MB_TAD_LUNCH3_TODAY_OPT5 . "</lable>
             <div class='my-content'>
-                <input type='text' class='my-input color' data-hex='true' name='options[5]' value='{$options[5]}' size=8>
+                <div class='input-group'>
+                    <input type='text' class='my-input color-picker' data-hex='true' name='options[5]' value='{$options[5]}' size=8>
+                </div>
             </div>
         </li>
         <li class='my-row'>
             <lable class='my-label'>" . _MB_TAD_LUNCH3_TODAY_OPT6 . "</lable>
             <div class='my-content'>
-                <input type='text' class='my-input color' data-hex='true' name='options[6]' value='{$options[6]}' size=8>
+                <div class='input-group'>
+                    <input type='text' class='my-input color-picker' data-hex='true' name='options[6]' value='{$options[6]}' size=8>
+                </div>
             </div>
         </li>
         <li class='my-row'>

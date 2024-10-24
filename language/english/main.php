@@ -1,6 +1,5 @@
 <?php
 xoops_loadLanguage('main', 'tadtools');
-define('_TAD_NEED_TADTOOLS', "Need modules/tadtools. You can download tadtools from <a href='http://www.tad0616.net/modules/tad_uploader/index.php?of_cat_sn=50' target='_blank'>Tad's web</a>.");
 define('_MD_TADLUNCH3_SMNAME1', 'Home');
 
 define('_MD_TAD_LUNCH3_MEAL', 'Meals');

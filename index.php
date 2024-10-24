@@ -8,18 +8,42 @@ require __DIR__ . '/header.php';
 $xoopsOption['template_main'] = 'tad_lunch3_index.tpl';
 require_once XOOPS_ROOT_PATH . '/header.php';
 
+/*-----------執行動作判斷區----------*/
+$op = Request::getString('op');
+$SchoolId = Request::getString('SchoolId');
+$period = Request::getString('period', date('Y-m-d'));
+
+switch ($op) {
+
+    case 're_get':
+        re_get($SchoolId, $period);
+        header("location: index.php?period=$period");
+        exit;
+
+    default:
+        tad_lunch3_list($period);
+        $op = 'tad_lunch3_list';
+        break;
+
+}
+
+/*-----------秀出結果區--------------*/
+$xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu, false, $interface_icon));
+$xoopsTpl->assign('now_op', $op);
+$xoTheme->addStylesheet('/modules/tad_lunch3/css/module.css');
+require_once XOOPS_ROOT_PATH . '/footer.php';
+
 /*-----------功能函數區--------------*/
 
 function tad_lunch3_list($period = '')
 {
-    global $xoopsTpl, $xoopsModuleConfig;
-
+    global $xoopsTpl, $xoopsModuleConfig, $xoTheme;
+    $xoTheme->addScript('modules/tadtools/My97DatePicker/WdatePicker.js');
     $TadDataCenter = new TadDataCenter('tad_lunch3');
     if (empty($period) or !validateDate($period)) {
         $period = date('Y-m-d');
     }
     $xoopsTpl->assign('period', $period);
-    // $xoopsTpl->assign('SchoolIdArr', 'ss');
 
     $SchoolIdArr = explode(';', $xoopsModuleConfig['SchoolId']);
     $lunch_note = $xoopsModuleConfig['lunch_note'];
@@ -33,15 +57,15 @@ function tad_lunch3_list($period = '')
         $TadDataCenter->set_col('SchoolId', $SchoolId);
         $data = $TadDataCenter->getData($period);
 
-        if ($data && false !== mb_strpos($data, 'BatchDataId')) {
+        if (isset($data[$period][0]) && false !== mb_strpos($data[$period][0], 'BatchDataId')) {
             $lunch[$SchoolId] = json_decode($data[$period][0], true);
         } else {
-            $json = get_url("https://fatraceschool.k12ea.gov.tw/school/{$SchoolId}");
+            $json = Utility::vita_get_url_content("https://fatraceschool.k12ea.gov.tw/school/{$SchoolId}");
             if ($json) {
                 $school = json_decode($json, true);
                 $lunch[$SchoolId] = $school['data'];
 
-                $json = get_url("https://fatraceschool.k12ea.gov.tw/offered/meal?SchoolId={$SchoolId}&period={$period}&KitchenId=all");
+                $json = Utility::vita_get_url_content("https://fatraceschool.k12ea.gov.tw/offered/meal?SchoolId={$SchoolId}&period={$period}&KitchenId=all");
                 if ($json) {
                     $meal = json_decode($json, true);
                     if ($meal['data']) {
@@ -49,7 +73,7 @@ function tad_lunch3_list($period = '')
 
                         $j = 0;
                         foreach ($meal['data'] as $m) {
-                            $json = get_url("https://fatraceschool.k12ea.gov.tw/dish?BatchDataId={$m['BatchDataId']}");
+                            $json = Utility::vita_get_url_content("https://fatraceschool.k12ea.gov.tw/dish?BatchDataId={$m['BatchDataId']}");
                             $dish = json_decode($json, true);
                             $lunch[$SchoolId]['meal'][$j]['dish'] = $dish['data'];
                             $j++;
@@ -92,32 +116,3 @@ function validateDate($date, $format = 'Y-m-d')
     $d = DateTime::createFromFormat($format, $date);
     return $d && $d->format($format) == $date;
 }
-/*-----------執行動作判斷區----------*/
-$op = Request::getString('op');
-$SchoolId = Request::getString('SchoolId');
-$period = Request::getString('period');
-
-if (empty($period)) {
-    $period = date('Y-m-d');
-}
-
-switch ($op) {
-    /*---判斷動作請貼在下方---*/
-    case 're_get':
-        re_get($SchoolId, $period);
-        header("location: index.php?period=$period");
-        exit;
-
-    default:
-        tad_lunch3_list($period);
-        $op = 'tad_lunch3_list';
-        break;
-        /*---判斷動作請貼在上方---*/
-}
-
-/*-----------秀出結果區--------------*/
-$xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu));
-$xoopsTpl->assign('isAdmin', $isAdmin);
-$xoopsTpl->assign('now_op', $op);
-$xoTheme->addStylesheet('/modules/tad_lunch3/css/module.css');
-require_once XOOPS_ROOT_PATH . '/footer.php';

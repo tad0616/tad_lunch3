@@ -19,33 +19,23 @@ use Xmf\Request;
  **/
 
 /*-----------引入檔案區--------------*/
-$isAdmin = true;
-$GLOBALS['xoopsOption']['template_main'] = 'tad_lunch3_adm_main.tpl';
+$GLOBALS['xoopsOption']['template_main'] = 'tad_lunch3_admin.tpl';
 require_once __DIR__ . '/header.php';
-require_once dirname(__DIR__) . '/function.php';
-
-/*-----------功能函數區--------------*/
 
 /*-----------執行動作判斷區----------*/
 
 $op = Request::getString('op');
 
 switch ($op) {
-    /*---判斷動作請貼在下方---*/
 
     default:
         $now_op = 'tad_lunch3_readme';
         break;
-        /*---判斷動作請貼在上方---*/
+
 }
 
 /*-----------秀出結果區--------------*/
-$xoopsTpl->assign('isAdmin', true);
 $xoopsTpl->assign('now_op', $now_op);
-$xoTheme->addStylesheet('/modules/tadtools/css/font-awesome/css/font-awesome.css');
-if ($_SEESION['bootstrap'] == 3) {
-    $xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/xoops_adm3.css');
-} else {
-    $xoTheme->addStylesheet(XOOPS_URL . '/modules/tadtools/css/xoops_adm4.css');
-}
 require_once __DIR__ . '/footer.php';
+
+/*-----------功能函數區--------------*/

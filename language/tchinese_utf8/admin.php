@@ -1,6 +1,5 @@
 <?php
- xoops_loadLanguage('admin_common', 'tadtools');
-define('_TAD_NEED_TADTOOLS', '需要 tadtools 模組，可至<a href="http://campus-xoops.tn.edu.tw/modules/tad_modules/index.php?module_sn=1" target="_blank">XOOPS輕鬆架</a>下載。');
+xoops_loadLanguage('admin_common', 'tadtools');
 
 define('_MA_TAD_LUNCH3_STEP', '設定步驟說明');
 define('_MA_TAD_LUNCH3_STEP1', '請先連至<a href="https://fatraceschool.k12ea.gov.tw/" target="_blank">校園食材登錄平臺</a>');

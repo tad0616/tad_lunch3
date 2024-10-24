@@ -1,7 +1,6 @@
 <?php
 xoops_loadLanguage('main', 'tadtools');
-define('_TAD_NEED_TADTOOLS', '需要 tadtools 模組，可至<a href="http://campus-xoops.tn.edu.tw/modules/tad_modules/index.php?module_sn=1" target="_blank">XOOPS輕鬆架</a>下載。');
-define('_MD_TADLUNCH3_SMNAME1', '午餐資訊主頁');
+define('_MD_TADLUNCH3_SMNAME1', '午餐資訊');
 
 define('_MD_TAD_LUNCH3_MEAL', '餐點');
 define('_MD_TAD_LUNCH3_LUNCH', '午餐');
