@@ -12,14 +12,10 @@ if (!class_exists('XoopsModules\Tadtools\TadDataCenter')) {
 function tad_lunch3_today($options)
 {
 
-    $moduleHandler = xoops_getHandler('module');
-    $xoopsModule = $moduleHandler->getByDirname('tad_lunch3');
-    $configHandler = xoops_getHandler('config');
-    $mid = $xoopsModule->mid();
-    $xoopsModuleConfig = $configHandler->getConfigsByCat(0, $mid);
+    $TadLunch3ModuleConfig = Utility::getXoopsModuleConfig('tad_lunch3');
 
-    $SchoolIdArr = explode(';', $xoopsModuleConfig['SchoolId']);
-    $block['lunch_note'] = $xoopsModuleConfig['lunch_note'];
+    $SchoolIdArr = explode(';', $TadLunch3ModuleConfig['SchoolId']);
+    $block['lunch_note'] = $TadLunch3ModuleConfig['lunch_note'];
 
     $TadDataCenter = new TadDataCenter('tad_lunch3');
 
@@ -91,9 +87,9 @@ function tad_lunch3_today($options)
     $block['annotated_text'] = $options[11];
 
     $responsive_tabs = new EasyResponsiveTabs('#lunch3Tab');
-    $responsive_tabs->rander();
+    $responsive_tabs->render();
     $kitchenTab = new EasyResponsiveTabs('#kitchenTab');
-    $kitchenTab->rander();
+    $kitchenTab->render();
     return $block;
 }
 
@@ -305,15 +301,8 @@ function tad_lunch3_today_edit($options)
 if (!function_exists('block_schoolid')) {
     function block_schoolid($selected = '')
     {
-        global $xoopsDB, $xoopsModule;
-
-        $moduleHandler = xoops_getHandler('module');
-        $xoopsModule = $moduleHandler->getByDirname('tad_lunch3');
-        $configHandler = xoops_getHandler('config');
-        $mid = $xoopsModule->mid();
-        $xoopsModuleConfig = $configHandler->getConfigsByCat(0, $mid);
-
-        $SchoolIdArr = explode(';', $xoopsModuleConfig['SchoolId']);
+        $TadLunch3ModuleConfig = Utility::getXoopsModuleConfig('tad_lunch3');
+        $SchoolIdArr = explode(';', $TadLunch3ModuleConfig['SchoolId']);
 
         if (!empty($selected)) {
             $sc = explode(',', $selected);

@@ -1,13 +1,17 @@
+Tad lunch3 3.0 (released on 2024-11-11)
+====================================
+1. Support XOOPS 2.5.11
+2. Support PHP8.1.x
+3. Use $xoopsDB->escape() instead of $myts->addSlashes()
+
 tad_lunch3 2.4 (released 2024-04-30)
 ================================================
 1. Add "Lunch Note Description" preference to solve the problem of not being able to fill too much description in the block.
-
 
 tad_lunch3 2.3 (Released 2021-12-01)
 ================================================
 1. Enhance security filtering to avoid malicious use
 2. Support BootStrap5
-
 
 tad_lunch3 2.2 (Released 2021-07-30)
 ================================================
@@ -17,7 +21,6 @@ tad_lunch3 2.1 (Released 2021-07-28)
 ================================================
 1. Add "Comment Text" function to the block
 2. Adjust tad_lunch3_data_center field
-
 
 tad_lunch3 2.0 (Released on 2020-08-31)
 =============================================================

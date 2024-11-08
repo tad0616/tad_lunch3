@@ -32,7 +32,6 @@ $xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu, false, 
 $xoopsTpl->assign('now_op', $op);
 $xoTheme->addStylesheet('/modules/tad_lunch3/css/module.css');
 require_once XOOPS_ROOT_PATH . '/footer.php';
-
 /*-----------功能函數區--------------*/
 
 function tad_lunch3_list($period = '')
@@ -98,9 +97,9 @@ function tad_lunch3_list($period = '')
 
     $xoopsTpl->assign('lunch', $lunch);
     $responsive_tabs = new EasyResponsiveTabs('#lunch3Tab');
-    $responsive_tabs->rander();
+    $responsive_tabs->render();
     $kitchenTab = new EasyResponsiveTabs('#kitchenTab');
-    $kitchenTab->rander();
+    $kitchenTab->render();
 }
 
 function re_get($SchoolId, $period)
