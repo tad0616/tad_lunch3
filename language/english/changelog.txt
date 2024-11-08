@@ -46,7 +46,6 @@ Tad_lunch3 1.6 (2019-09-24 released)
 1. Fixed an issue where data could not be retrieved manually
 2. Block join school name setting
 
-
 Tad_lunch3 1.5 (2019-05-10 released)
 =========================================================
 1. Support XOOPS 2.5.10
@@ -58,16 +57,13 @@ tad_lunch3 1.4 (2019-01-01 released)
 2.Support PHP 7.3
 3.Support MySQL database strict mode
 
-
 tad_lunch3 1.3 (2018-05-16 released)
 =================================================
 1. When the data does not exist, join the retake button
 
-
 tad_lunch3 1.2 (2018-05-14 released)
 =================================================
 1. Fixed an issue where data could not be displayed
-
 
 tad_lunch3 1.1 (2018-05-09 released)
 =================================================

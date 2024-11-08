@@ -30,7 +30,7 @@ switch ($op) {
 /*-----------秀出結果區--------------*/
 $xoopsTpl->assign('toolbar', Utility::toolbar_bootstrap($interface_menu, false, $interface_icon));
 $xoopsTpl->assign('now_op', $op);
-$xoTheme->addStylesheet('/modules/tad_lunch3/css/module.css');
+$xoTheme->addStylesheet('modules/tad_lunch3/css/module.css');
 require_once XOOPS_ROOT_PATH . '/footer.php';
 /*-----------功能函數區--------------*/
 
