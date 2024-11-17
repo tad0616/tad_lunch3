@@ -81,7 +81,8 @@ function tad_lunch3_list($period = '')
                         $TadDataCenter->saveCustomData([$period => json_encode($lunch[$SchoolId], 256)]);
                         $i++;
                     } else {
-                        $lunch[$SchoolId]['lunch_error'] = $lunch_error = _MD_TAD_LUNCH3_UNABLE_TO_PARSE . "https://fatraceschool.k12ea.gov.tw/offered/meal?SchoolId={$SchoolId}&period={$period}&KitchenId=all";
+                        // $lunch[$SchoolId]['lunch_error'] = $lunch_error = _MD_TAD_LUNCH3_UNABLE_TO_PARSE . "https://fatraceschool.k12ea.gov.tw/offered/meal?SchoolId={$SchoolId}&period={$period}&KitchenId=all";
+                        $lunch[$SchoolId]['lunch_error'] = $lunch_error = _MD_TAD_LUNCH3_NO_LUNCH;
                         $TadDataCenter->saveCustomData([$period => $lunch_error]);
                     }
                 } else {

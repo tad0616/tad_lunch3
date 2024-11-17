@@ -75,7 +75,7 @@ $modversion['templates'] = [
 ];
 
 $modversion['blocks'] = [
-    [
+    1 => [
         'file' => 'tad_lunch3_today.php',
         'name' => _MI_TAD_LUNCH3_TODAY_BLOCK_NAME,
         'description' => _MI_TAD_LUNCH3_TODAY_BLOCK_DESC,
