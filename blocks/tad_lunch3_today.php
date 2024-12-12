@@ -42,6 +42,7 @@ function tad_lunch3_today($options)
 
         if (isset($data[$period][0]) && false !== mb_strpos($data[$period][0], 'BatchDataId')) {
             $block['school'][$SchoolId] = json_decode($data[$period][0], true);
+            Utility::test($block, 'data', 'dd');
         } else {
             $json1 = Utility::vita_get_url_content("https://fatraceschool.k12ea.gov.tw/school/{$SchoolId}");
             if ($json1) {
